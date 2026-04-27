@@ -58,6 +58,10 @@
   .next-badge { display: none; align-items: center; gap: 4px; background: var(--day2); color: white; font-size: 0.65rem; font-weight: 800; padding: 2px 7px; border-radius: 20px; margin-top: 5px; letter-spacing: 0.5px; width: fit-content; }
   .event-card.next-up .next-badge { display: flex; }
   .event-card.past { opacity: 0.4; }
+  /* FUTURE DAY — highlight event đầu tiên nhẹ */
+  .event-card.future-first { background: linear-gradient(90deg, rgba(78,205,196,0.07), transparent) !important; border-left: 4px solid var(--day2); }
+  .future-badge { display: none; align-items: center; gap: 4px; background: #888; color: white; font-size: 0.65rem; font-weight: 800; padding: 2px 7px; border-radius: 20px; margin-top: 5px; letter-spacing: 0.5px; width: fit-content; }
+  .event-card.future-first .future-badge { display: flex; }
   .time-col { min-width: 80px; padding: 14px 10px 14px 14px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; }
   .time-badge { font-family: 'Baloo 2', cursive; font-size: 0.72rem; font-weight: 700; padding: 3px 7px; border-radius: 8px; color: white; text-align: center; white-space: nowrap; }
   .d1 .time-badge { background: var(--day1); }
@@ -76,31 +80,7 @@
   .pill-outfit { background: #fff0f6; color: #c2185b; border: 1px solid #f8bbd0; }
   .pill-food { background: #fff8e1; color: #e65100; border: 1px solid #ffe082; }
   .pill-note { background: #e8f5e9; color: #2e7d32; border: 1px solid #a5d6a7; }
-  /* NÚT TRÒN NOW */
-  #scroll-now-btn {
-    position: fixed;
-    bottom: 28px;
-    right: 20px;
-    width: 56px;
-    height: 56px;
-    border-radius: 50%;
-    background: linear-gradient(135deg, #ff416c, #ff4b2b);
-    color: white;
-    border: none;
-    font-family: 'Baloo 2', cursive;
-    font-size: 0.72rem;
-    font-weight: 800;
-    cursor: pointer;
-    box-shadow: 0 4px 18px rgba(255,65,108,0.6);
-    display: none;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 1px;
-    z-index: 100;
-    line-height: 1.1;
-    animation: pop-in 0.3s ease both;
-  }
+  #scroll-now-btn { position: fixed; bottom: 28px; right: 20px; width: 56px; height: 56px; border-radius: 50%; background: linear-gradient(135deg, #ff416c, #ff4b2b); color: white; border: none; font-family: 'Baloo 2', cursive; font-size: 0.72rem; font-weight: 800; cursor: pointer; box-shadow: 0 4px 18px rgba(255,65,108,0.6); display: none; flex-direction: column; align-items: center; justify-content: center; gap: 1px; z-index: 100; line-height: 1.1; }
   #scroll-now-btn .now-dot { width: 7px; height: 7px; background: white; border-radius: 50%; animation: blink 1s ease-in-out infinite; }
   #scroll-now-btn .now-label { font-size: 0.68rem; letter-spacing: 1px; }
   #scroll-now-btn.show { display: flex; }
@@ -108,7 +88,6 @@
   @keyframes bob { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
   @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
   @keyframes pulse-bg { 0%, 100% { opacity: 1; } 50% { opacity: 0.88; } }
-  @keyframes pop-in { from { opacity: 0; transform: scale(0.5); } to { opacity: 1; transform: scale(1); } }
   @media (max-width: 400px) { .header h1 { font-size: 1.8rem; } .tab-btn { padding: 8px 14px; font-size: 0.85rem; } .time-col { min-width: 68px; } .time-badge { font-size: 0.65rem; } }
 </style>
 </head>
@@ -136,43 +115,40 @@
 <div class="day-section active" id="day1">
   <div class="day-header d1"><div class="day-number">01</div><div class="day-title-block"><h2>🚗 Lên Đường!</h2><p>Sài Gòn → Phan Thiết · Nhận Villa · Tắm biển</p></div></div>
   <div class="timeline">
-    <div class="event-card" data-day="1" data-start="7:00" data-end="8:00"><div class="time-col d1"><span class="time-badge">7:00</span><div class="dot-line"></div></div><div class="content-col"><div class="activity-row"><span class="activity-icon">🍳</span><span class="activity-name">Ăn sáng + Cà phê tại Sài Gòn</span></div><div class="detail-pills"><span class="pill pill-outfit">👕 Đồ đơn giản, thoải mái</span><span class="pill pill-note">📸 Không chụp ảnh kk</span></div><div class="current-badge">🔴 ĐANG DIỄN RA</div><div class="next-badge">⏩ TIẾP THEO</div></div></div>
-    <div class="event-card" data-day="1" data-start="8:00" data-end="12:00"><div class="time-col d1"><span class="time-badge">8:00</span><div class="dot-line"></div></div><div class="content-col"><div class="activity-row"><span class="activity-icon">🚌</span><span class="activity-name">Di chuyển đi Phan Thiết</span></div><div class="current-badge">🔴 ĐANG DIỄN RA</div><div class="next-badge">⏩ TIẾP THEO</div></div></div>
-    <div class="event-card" data-day="1" data-start="12:00" data-end="14:00"><div class="time-col d1"><span class="time-badge">12:00</span><div class="dot-line"></div></div><div class="content-col"><div class="activity-row"><span class="activity-icon">🍚</span><span class="activity-name">Ăn trưa: Cơm Niêu</span></div><div class="current-badge">🔴 ĐANG DIỄN RA</div><div class="next-badge">⏩ TIẾP THEO</div></div></div>
-    <div class="event-card" data-day="1" data-start="14:00" data-end="14:01"><div class="time-col d1"><span class="time-badge">14:00</span><div class="dot-line"></div></div><div class="content-col"><div class="activity-row"><span class="activity-icon">🏡</span><span class="activity-name">Check-in Villa</span></div><div class="current-badge">🔴 ĐANG DIỄN RA</div><div class="next-badge">⏩ TIẾP THEO</div></div></div>
-    <div class="event-card" data-day="1" data-start="14:01" data-end="16:00"><div class="time-col d1"><span class="time-badge">14:00–16:00</span><div class="dot-line"></div></div><div class="content-col"><div class="activity-row"><span class="activity-icon">😴</span><span class="activity-name">Nghỉ ngơi</span></div><div class="current-badge">🔴 ĐANG DIỄN RA</div><div class="next-badge">⏩ TIẾP THEO</div></div></div>
-    <div class="event-card" data-day="1" data-start="16:00" data-end="18:00"><div class="time-col d1"><span class="time-badge">16:00–18:00</span><div class="dot-line"></div></div><div class="content-col"><div class="activity-row"><span class="activity-icon">🏊</span><span class="activity-name">Tắm Hồ Bơi / Tắm Biển</span></div><div class="current-badge">🔴 ĐANG DIỄN RA</div><div class="next-badge">⏩ TIẾP THEO</div></div></div>
-    <div class="event-card" data-day="1" data-start="18:00" data-end="22:00"><div class="time-col d1"><span class="time-badge">18:00–22:00</span><div class="dot-line"></div></div><div class="content-col"><div class="activity-row"><span class="activity-icon">🌅</span><span class="activity-name">Ăn Tối — Ngắm Hoàng Hôn</span></div><div class="detail-pills"><span class="pill pill-outfit">👗 Màu trắng hoặc vàng</span><span class="pill pill-food">🦞 Tự nấu hải sản / đặt mang về villa</span></div><div class="current-badge">🔴 ĐANG DIỄN RA</div><div class="next-badge">⏩ TIẾP THEO</div></div></div>
+    <div class="event-card" data-day="1" data-start="7:00" data-end="8:00"><div class="time-col d1"><span class="time-badge">7:00</span><div class="dot-line"></div></div><div class="content-col"><div class="activity-row"><span class="activity-icon">🍳</span><span class="activity-name">Ăn sáng + Cà phê tại Sài Gòn</span></div><div class="detail-pills"><span class="pill pill-outfit">👕 Đồ đơn giản, thoải mái</span><span class="pill pill-note">📸 Không chụp ảnh kk</span></div><div class="current-badge">🔴 ĐANG DIỄN RA</div><div class="next-badge">⏩ TIẾP THEO</div><div class="future-badge">📅 BẮT ĐẦU NGÀY MAI</div></div></div>
+    <div class="event-card" data-day="1" data-start="8:00" data-end="12:00"><div class="time-col d1"><span class="time-badge">8:00</span><div class="dot-line"></div></div><div class="content-col"><div class="activity-row"><span class="activity-icon">🚌</span><span class="activity-name">Di chuyển đi Phan Thiết</span></div><div class="current-badge">🔴 ĐANG DIỄN RA</div><div class="next-badge">⏩ TIẾP THEO</div><div class="future-badge">📅 BẮT ĐẦU NGÀY MAI</div></div></div>
+    <div class="event-card" data-day="1" data-start="12:00" data-end="14:00"><div class="time-col d1"><span class="time-badge">12:00</span><div class="dot-line"></div></div><div class="content-col"><div class="activity-row"><span class="activity-icon">🍚</span><span class="activity-name">Ăn trưa: Cơm Niêu</span></div><div class="current-badge">🔴 ĐANG DIỄN RA</div><div class="next-badge">⏩ TIẾP THEO</div><div class="future-badge">📅 BẮT ĐẦU NGÀY MAI</div></div></div>
+    <div class="event-card" data-day="1" data-start="14:00" data-end="14:01"><div class="time-col d1"><span class="time-badge">14:00</span><div class="dot-line"></div></div><div class="content-col"><div class="activity-row"><span class="activity-icon">🏡</span><span class="activity-name">Check-in Villa</span></div><div class="current-badge">🔴 ĐANG DIỄN RA</div><div class="next-badge">⏩ TIẾP THEO</div><div class="future-badge">📅 BẮT ĐẦU NGÀY MAI</div></div></div>
+    <div class="event-card" data-day="1" data-start="14:01" data-end="16:00"><div class="time-col d1"><span class="time-badge">14:00–16:00</span><div class="dot-line"></div></div><div class="content-col"><div class="activity-row"><span class="activity-icon">😴</span><span class="activity-name">Nghỉ ngơi</span></div><div class="current-badge">🔴 ĐANG DIỄN RA</div><div class="next-badge">⏩ TIẾP THEO</div><div class="future-badge">📅 BẮT ĐẦU NGÀY MAI</div></div></div>
+    <div class="event-card" data-day="1" data-start="16:00" data-end="18:00"><div class="time-col d1"><span class="time-badge">16:00–18:00</span><div class="dot-line"></div></div><div class="content-col"><div class="activity-row"><span class="activity-icon">🏊</span><span class="activity-name">Tắm Hồ Bơi / Tắm Biển</span></div><div class="current-badge">🔴 ĐANG DIỄN RA</div><div class="next-badge">⏩ TIẾP THEO</div><div class="future-badge">📅 BẮT ĐẦU NGÀY MAI</div></div></div>
+    <div class="event-card" data-day="1" data-start="18:00" data-end="22:00"><div class="time-col d1"><span class="time-badge">18:00–22:00</span><div class="dot-line"></div></div><div class="content-col"><div class="activity-row"><span class="activity-icon">🌅</span><span class="activity-name">Ăn Tối — Ngắm Hoàng Hôn</span></div><div class="detail-pills"><span class="pill pill-outfit">👗 Màu trắng hoặc vàng</span><span class="pill pill-food">🦞 Tự nấu hải sản / đặt mang về villa</span></div><div class="current-badge">🔴 ĐANG DIỄN RA</div><div class="next-badge">⏩ TIẾP THEO</div><div class="future-badge">📅 BẮT ĐẦU NGÀY MAI</div></div></div>
   </div>
 </div>
 <div class="day-section" id="day2">
   <div class="day-header d2"><div class="day-number">02</div><div class="day-title-block"><h2>🎢 Ngày Vui Nhất!</h2><p>Bình minh · Safari · Water Park · Ăn tối view biển</p></div></div>
   <div class="timeline">
-    <div class="event-card" data-day="2" data-start="5:00" data-end="7:00"><div class="time-col d2"><span class="time-badge">5:00–7:00</span><div class="dot-line"></div></div><div class="content-col"><div class="activity-row"><span class="activity-icon">📸</span><span class="activity-name">Chụp Bikini Bình Minh</span></div><div class="detail-pills"><span class="pill pill-outfit">👙 Bikini tùy chọn</span></div><div class="current-badge">🔴 ĐANG DIỄN RA</div><div class="next-badge">⏩ TIẾP THEO</div></div></div>
-    <div class="event-card" data-day="2" data-start="7:00" data-end="8:30"><div class="time-col d2"><span class="time-badge">7:00–8:30</span><div class="dot-line"></div></div><div class="content-col"><div class="activity-row"><span class="activity-icon">☕</span><span class="activity-name">Ăn Sáng + Cà Phê View Biển</span></div><div class="detail-pills"><span class="pill pill-outfit">👗 Đầm dài maxi — Xanh dương / Trắng</span><span class="pill pill-food">🍽️ Nhà Hàng Aloha</span><span class="pill pill-food">💰 Combo 1 món + cà phê ~100k/người</span></div><div class="current-badge">🔴 ĐANG DIỄN RA</div><div class="next-badge">⏩ TIẾP THEO</div></div></div>
-    <div class="event-card" data-day="2" data-start="8:30" data-end="11:30"><div class="time-col d2"><span class="time-badge">8:30–11:30</span><div class="dot-line"></div></div><div class="content-col"><div class="activity-row"><span class="activity-icon">🦁</span><span class="activity-name">DiNo Park · Safari Cafe · Circus Land</span></div><div class="detail-pills"><span class="pill pill-outfit">🩳 Quần đùi / Chân váy ngắn</span><span class="pill pill-outfit">⚪🟫 Ưu tiên màu trắng – nâu</span><span class="pill pill-note">📍 Công Viên Khủng Long</span></div><div class="current-badge">🔴 ĐANG DIỄN RA</div><div class="next-badge">⏩ TIẾP THEO</div></div></div>
-    <div class="event-card" data-day="2" data-start="11:30" data-end="13:00"><div class="time-col d2"><span class="time-badge">11:30–13:00</span><div class="dot-line"></div></div><div class="content-col"><div class="activity-row"><span class="activity-icon">🦐</span><span class="activity-name">Ăn Trưa</span></div><div class="detail-pills"><span class="pill pill-food">🍽️ Nhà Hàng Hải Sản Xuân Hưng</span></div><div class="current-badge">🔴 ĐANG DIỄN RA</div><div class="next-badge">⏩ TIẾP THEO</div></div></div>
-    <div class="event-card" data-day="2" data-start="13:00" data-end="15:00"><div class="time-col d2"><span class="time-badge">13:00–15:00</span><div class="dot-line"></div></div><div class="content-col"><div class="activity-row"><span class="activity-icon">🛏️</span><span class="activity-name">Về Villa Nghỉ Ngơi</span></div><div class="current-badge">🔴 ĐANG DIỄN RA</div><div class="next-badge">⏩ TIẾP THEO</div></div></div>
-    <div class="event-card" data-day="2" data-start="15:00" data-end="17:00"><div class="time-col d2"><span class="time-badge">15:00–17:00</span><div class="dot-line"></div></div><div class="content-col"><div class="activity-row"><span class="activity-icon">💦</span><span class="activity-name">Công Viên Nước Water Park</span></div><div class="detail-pills"><span class="pill pill-outfit">🩱 Mặc đồ bơi</span></div><div class="current-badge">🔴 ĐANG DIỄN RA</div><div class="next-badge">⏩ TIẾP THEO</div></div></div>
-    <div class="event-card" data-day="2" data-start="17:00" data-end="19:00"><div class="time-col d2"><span class="time-badge">17:00–19:00</span><div class="dot-line"></div></div><div class="content-col"><div class="activity-row"><span class="activity-icon">🏡</span><span class="activity-name">Về Villa Chuẩn Bị</span></div><div class="current-badge">🔴 ĐANG DIỄN RA</div><div class="next-badge">⏩ TIẾP THEO</div></div></div>
-    <div class="event-card" data-day="2" data-start="19:00" data-end="21:00"><div class="time-col d2"><span class="time-badge">19:00–21:00</span><div class="dot-line"></div></div><div class="content-col"><div class="activity-row"><span class="activity-icon">🌊</span><span class="activity-name">Ăn Tối</span></div><div class="detail-pills"><span class="pill pill-outfit">✨ Đồ thoải mái — tùy mọi người</span><span class="pill pill-food">🍽️ Nhà Hàng Hương Biển</span></div><div class="current-badge">🔴 ĐANG DIỄN RA</div><div class="next-badge">⏩ TIẾP THEO</div></div></div>
+    <div class="event-card" data-day="2" data-start="5:00" data-end="7:00"><div class="time-col d2"><span class="time-badge">5:00–7:00</span><div class="dot-line"></div></div><div class="content-col"><div class="activity-row"><span class="activity-icon">📸</span><span class="activity-name">Chụp Bikini Bình Minh</span></div><div class="detail-pills"><span class="pill pill-outfit">👙 Bikini tùy chọn</span></div><div class="current-badge">🔴 ĐANG DIỄN RA</div><div class="next-badge">⏩ TIẾP THEO</div><div class="future-badge">📅 BẮT ĐẦU NGÀY MAI</div></div></div>
+    <div class="event-card" data-day="2" data-start="7:00" data-end="8:30"><div class="time-col d2"><span class="time-badge">7:00–8:30</span><div class="dot-line"></div></div><div class="content-col"><div class="activity-row"><span class="activity-icon">☕</span><span class="activity-name">Ăn Sáng + Cà Phê View Biển</span></div><div class="detail-pills"><span class="pill pill-outfit">👗 Đầm dài maxi — Xanh dương / Trắng</span><span class="pill pill-food">🍽️ Nhà Hàng Aloha</span><span class="pill pill-food">💰 Combo 1 món + cà phê ~100k/người</span></div><div class="current-badge">🔴 ĐANG DIỄN RA</div><div class="next-badge">⏩ TIẾP THEO</div><div class="future-badge">📅 BẮT ĐẦU NGÀY MAI</div></div></div>
+    <div class="event-card" data-day="2" data-start="8:30" data-end="11:30"><div class="time-col d2"><span class="time-badge">8:30–11:30</span><div class="dot-line"></div></div><div class="content-col"><div class="activity-row"><span class="activity-icon">🦁</span><span class="activity-name">DiNo Park · Safari Cafe · Circus Land</span></div><div class="detail-pills"><span class="pill pill-outfit">🩳 Quần đùi / Chân váy ngắn</span><span class="pill pill-outfit">⚪🟫 Ưu tiên màu trắng – nâu</span><span class="pill pill-note">📍 Công Viên Khủng Long</span></div><div class="current-badge">🔴 ĐANG DIỄN RA</div><div class="next-badge">⏩ TIẾP THEO</div><div class="future-badge">📅 BẮT ĐẦU NGÀY MAI</div></div></div>
+    <div class="event-card" data-day="2" data-start="11:30" data-end="13:00"><div class="time-col d2"><span class="time-badge">11:30–13:00</span><div class="dot-line"></div></div><div class="content-col"><div class="activity-row"><span class="activity-icon">🦐</span><span class="activity-name">Ăn Trưa</span></div><div class="detail-pills"><span class="pill pill-food">🍽️ Nhà Hàng Hải Sản Xuân Hưng</span></div><div class="current-badge">🔴 ĐANG DIỄN RA</div><div class="next-badge">⏩ TIẾP THEO</div><div class="future-badge">📅 BẮT ĐẦU NGÀY MAI</div></div></div>
+    <div class="event-card" data-day="2" data-start="13:00" data-end="15:00"><div class="time-col d2"><span class="time-badge">13:00–15:00</span><div class="dot-line"></div></div><div class="content-col"><div class="activity-row"><span class="activity-icon">🛏️</span><span class="activity-name">Về Villa Nghỉ Ngơi</span></div><div class="current-badge">🔴 ĐANG DIỄN RA</div><div class="next-badge">⏩ TIẾP THEO</div><div class="future-badge">📅 BẮT ĐẦU NGÀY MAI</div></div></div>
+    <div class="event-card" data-day="2" data-start="15:00" data-end="17:00"><div class="time-col d2"><span class="time-badge">15:00–17:00</span><div class="dot-line"></div></div><div class="content-col"><div class="activity-row"><span class="activity-icon">💦</span><span class="activity-name">Công Viên Nước Water Park</span></div><div class="detail-pills"><span class="pill pill-outfit">🩱 Mặc đồ bơi</span></div><div class="current-badge">🔴 ĐANG DIỄN RA</div><div class="next-badge">⏩ TIẾP THEO</div><div class="future-badge">📅 BẮT ĐẦU NGÀY MAI</div></div></div>
+    <div class="event-card" data-day="2" data-start="17:00" data-end="19:00"><div class="time-col d2"><span class="time-badge">17:00–19:00</span><div class="dot-line"></div></div><div class="content-col"><div class="activity-row"><span class="activity-icon">🏡</span><span class="activity-name">Về Villa Chuẩn Bị</span></div><div class="current-badge">🔴 ĐANG DIỄN RA</div><div class="next-badge">⏩ TIẾP THEO</div><div class="future-badge">📅 BẮT ĐẦU NGÀY MAI</div></div></div>
+    <div class="event-card" data-day="2" data-start="19:00" data-end="21:00"><div class="time-col d2"><span class="time-badge">19:00–21:00</span><div class="dot-line"></div></div><div class="content-col"><div class="activity-row"><span class="activity-icon">🌊</span><span class="activity-name">Ăn Tối</span></div><div class="detail-pills"><span class="pill pill-outfit">✨ Đồ thoải mái — tùy mọi người</span><span class="pill pill-food">🍽️ Nhà Hàng Hương Biển</span></div><div class="current-badge">🔴 ĐANG DIỄN RA</div><div class="next-badge">⏩ TIẾP THEO</div><div class="future-badge">📅 BẮT ĐẦU NGÀY MAI</div></div></div>
   </div>
 </div>
 <div class="day-section" id="day3">
   <div class="day-header d3"><div class="day-number">03</div><div class="day-title-block"><h2>🌅 Ngày Cuối — Về Nhà</h2><p>Bình minh · Soạn đồ · Check-out · Trở về SG</p></div></div>
   <div class="timeline">
-    <div class="event-card" data-day="3" data-start="6:00" data-end="8:00"><div class="time-col d3"><span class="time-badge">6:00–8:00</span><div class="dot-line"></div></div><div class="content-col"><div class="activity-row"><span class="activity-icon">🌅</span><span class="activity-name">Ngắm Bình Minh Tại Villa</span></div><div class="current-badge">🔴 ĐANG DIỄN RA</div><div class="next-badge">⏩ TIẾP THEO</div></div></div>
-    <div class="event-card" data-day="3" data-start="8:00" data-end="10:00"><div class="time-col d3"><span class="time-badge">8:00–10:00</span><div class="dot-line"></div></div><div class="content-col"><div class="activity-row"><span class="activity-icon">☕</span><span class="activity-name">Ăn Sáng + Cà Phê</span></div><div class="detail-pills"><span class="pill pill-food">🍽️ Nhà Hàng Aloha</span><span class="pill pill-food">💰 Combo 1 món + cà phê ~100k/người</span></div><div class="current-badge">🔴 ĐANG DIỄN RA</div><div class="next-badge">⏩ TIẾP THEO</div></div></div>
-    <div class="event-card" data-day="3" data-start="10:00" data-end="12:00"><div class="time-col d3"><span class="time-badge">10:00–12:00</span><div class="dot-line"></div></div><div class="content-col"><div class="activity-row"><span class="activity-icon">🧳</span><span class="activity-name">Về Villa Soạn Đồ</span></div><div class="current-badge">🔴 ĐANG DIỄN RA</div><div class="next-badge">⏩ TIẾP THEO</div></div></div>
-    <div class="event-card" data-day="3" data-start="12:00" data-end="12:01"><div class="time-col d3"><span class="time-badge">12:00</span><div class="dot-line"></div></div><div class="content-col"><div class="activity-row"><span class="activity-icon">🔑</span><span class="activity-name">Check-out Villa</span></div><div class="detail-pills"><span class="pill pill-note">⚠️ Dọn phòng xong trước 12h!</span></div><div class="current-badge">🔴 ĐANG DIỄN RA</div><div class="next-badge">⏩ TIẾP THEO</div></div></div>
-    <div class="event-card" data-day="3" data-start="12:01" data-end="23:59"><div class="time-col d3"><span class="time-badge">12:00+</span><div class="dot-line"></div></div><div class="content-col"><div class="activity-row"><span class="activity-icon">🚗</span><span class="activity-name">Ăn Trưa Rồi Về Sài Gòn</span></div><div class="detail-pills"><span class="pill pill-note">🏠 Hẹn gặp lại ở chuyến sau!</span></div><div class="current-badge">🔴 ĐANG DIỄN RA</div><div class="next-badge">⏩ TIẾP THEO</div></div></div>
+    <div class="event-card" data-day="3" data-start="6:00" data-end="8:00"><div class="time-col d3"><span class="time-badge">6:00–8:00</span><div class="dot-line"></div></div><div class="content-col"><div class="activity-row"><span class="activity-icon">🌅</span><span class="activity-name">Ngắm Bình Minh Tại Villa</span></div><div class="current-badge">🔴 ĐANG DIỄN RA</div><div class="next-badge">⏩ TIẾP THEO</div><div class="future-badge">📅 BẮT ĐẦU NGÀY MAI</div></div></div>
+    <div class="event-card" data-day="3" data-start="8:00" data-end="10:00"><div class="time-col d3"><span class="time-badge">8:00–10:00</span><div class="dot-line"></div></div><div class="content-col"><div class="activity-row"><span class="activity-icon">☕</span><span class="activity-name">Ăn Sáng + Cà Phê</span></div><div class="detail-pills"><span class="pill pill-food">🍽️ Nhà Hàng Aloha</span><span class="pill pill-food">💰 Combo 1 món + cà phê ~100k/người</span></div><div class="current-badge">🔴 ĐANG DIỄN RA</div><div class="next-badge">⏩ TIẾP THEO</div><div class="future-badge">📅 BẮT ĐẦU NGÀY MAI</div></div></div>
+    <div class="event-card" data-day="3" data-start="10:00" data-end="12:00"><div class="time-col d3"><span class="time-badge">10:00–12:00</span><div class="dot-line"></div></div><div class="content-col"><div class="activity-row"><span class="activity-icon">🧳</span><span class="activity-name">Về Villa Soạn Đồ</span></div><div class="current-badge">🔴 ĐANG DIỄN RA</div><div class="next-badge">⏩ TIẾP THEO</div><div class="future-badge">📅 BẮT ĐẦU NGÀY MAI</div></div></div>
+    <div class="event-card" data-day="3" data-start="12:00" data-end="12:01"><div class="time-col d3"><span class="time-badge">12:00</span><div class="dot-line"></div></div><div class="content-col"><div class="activity-row"><span class="activity-icon">🔑</span><span class="activity-name">Check-out Villa</span></div><div class="detail-pills"><span class="pill pill-note">⚠️ Dọn phòng xong trước 12h!</span></div><div class="current-badge">🔴 ĐANG DIỄN RA</div><div class="next-badge">⏩ TIẾP THEO</div><div class="future-badge">📅 BẮT ĐẦU NGÀY MAI</div></div></div>
+    <div class="event-card" data-day="3" data-start="12:01" data-end="23:59"><div class="time-col d3"><span class="time-badge">12:00+</span><div class="dot-line"></div></div><div class="content-col"><div class="activity-row"><span class="activity-icon">🚗</span><span class="activity-name">Ăn Trưa Rồi Về Sài Gòn</span></div><div class="detail-pills"><span class="pill pill-note">🏠 Hẹn gặp lại ở chuyến sau!</span></div><div class="current-badge">🔴 ĐANG DIỄN RA</div><div class="next-badge">⏩ TIẾP THEO</div><div class="future-badge">📅 BẮT ĐẦU NGÀY MAI</div></div></div>
   </div>
 </div>
 <p class="footer-note">✌️ Đúng giờ là yêu thương · Mình đi cùng nhau thì vui hơn!</p>
-<button id="scroll-now-btn" onclick="scrollToNow()">
-  <span class="now-dot"></span>
-  <span class="now-label">NOW</span>
-</button>
+<button id="scroll-now-btn" onclick="scrollToNow()"><span class="now-dot"></span><span class="now-label">NOW</span></button>
 <script>
   const TRIP_START = new Date('2026-04-27'); // ← ĐỔI ngày đi thật
   function getTripDay() {
@@ -185,14 +161,22 @@
   function getNowMin() { const n = new Date(); return n.getHours() * 60 + n.getMinutes(); }
   function getName(c) { return c.querySelector('.activity-name').textContent; }
   let cdInterval = null;
+
   function updateTimeline() {
     const tripDay = getTripDay(), nowMin = getNowMin();
     const cards = document.querySelectorAll('.event-card[data-day]');
-    cards.forEach(c => c.classList.remove('current','next-up','past'));
+    cards.forEach(c => c.classList.remove('current','next-up','past','future-first'));
     if (tripDay < 1 || tripDay > 3) { updatePreTrip(tripDay); hideStickyBar(); return; }
     document.getElementById('static-countdown').style.display = 'none';
     let cur = null, nxt = null;
     cards.forEach(c => { if (parseInt(c.dataset.day) < tripDay) c.classList.add('past'); });
+    // Highlight first event of future days
+    [1,2,3].forEach(d => {
+      if (d > tripDay) {
+        const first = Array.from(cards).find(c => parseInt(c.dataset.day) === d);
+        if (first) first.classList.add('future-first');
+      }
+    });
     Array.from(cards).filter(c => parseInt(c.dataset.day) === tripDay).forEach(c => {
       const s = parseTime(c.dataset.start), e = parseTime(c.dataset.end);
       if (nowMin >= s && nowMin < e) { if (!cur) cur = c; }
@@ -208,6 +192,7 @@
     const btn = document.getElementById('scroll-now-btn');
     (cur || nxt) ? btn.classList.add('show') : btn.classList.remove('show');
   }
+
   function updateStickyBar(cur, nxt) {
     const bar = document.getElementById('sticky-bar');
     const live = document.getElementById('live-banner-sticky');
