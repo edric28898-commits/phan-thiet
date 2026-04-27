@@ -6,26 +6,34 @@
 <title>Lịch Trình Phan Thiết 🌊</title>
 <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;600;800&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
-  :root { --day1: #FF6B6B; --day2: #4ECDC4; --day3: #FFE66D; --sand-dark: #F4A261; --ocean: #0077B6; }
+  :root { --day1: #FF6B6B; --day2: #4ECDC4; --day3: #FFE66D; --sand-dark: #F4A261; }
   * { margin: 0; padding: 0; box-sizing: border-box; }
   body { font-family: 'Nunito', sans-serif; background: linear-gradient(160deg, #0077B6 0%, #00B4D8 40%, #90E0EF 70%, #FCEABB 100%); min-height: 100vh; padding: 20px 16px 80px; }
   .header { text-align: center; padding: 30px 20px 20px; }
   .header-emoji { font-size: 52px; display: block; margin-bottom: 8px; animation: bob 3s ease-in-out infinite; }
   .header h1 { font-family: 'Baloo 2', cursive; font-size: 2.2rem; font-weight: 800; color: white; text-shadow: 0 3px 12px rgba(0,0,0,0.3); line-height: 1.1; }
   .header p { color: rgba(255,255,255,0.9); font-size: 1rem; margin-top: 8px; font-weight: 600; letter-spacing: 1px; }
-  #countdown-banner { background: rgba(255,255,255,0.18); backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.35); border-radius: 18px; padding: 14px 18px; margin: 16px 0 6px; text-align: center; display: none; }
-  #countdown-banner.show { display: block; }
-  .countdown-label { color: rgba(255,255,255,0.85); font-size: 0.78rem; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 4px; }
-  .countdown-activity { color: white; font-family: 'Baloo 2', cursive; font-size: 1rem; font-weight: 700; margin-bottom: 8px; }
-  .countdown-time { font-family: 'Baloo 2', cursive; font-size: 2rem; font-weight: 800; color: white; text-shadow: 0 2px 10px rgba(0,0,0,0.2); letter-spacing: 2px; }
-  .countdown-time span { display: inline-block; background: rgba(0,0,0,0.2); border-radius: 8px; padding: 2px 8px; margin: 0 2px; }
-  .live-banner { background: linear-gradient(135deg, #ff416c, #ff4b2b); border-radius: 18px; padding: 12px 18px; margin: 16px 0 6px; text-align: center; display: none; animation: pulse-bg 2s ease-in-out infinite; }
+  /* STICKY BAR */
+  #sticky-bar { position: sticky; top: 0; z-index: 50; margin: 0 -16px; padding: 0 16px; display: none; }
+  #sticky-bar.show { display: block; }
+  .live-banner { background: linear-gradient(135deg, #ff416c, #ff4b2b); padding: 10px 16px; text-align: center; display: none; animation: pulse-bg 2s ease-in-out infinite; }
   .live-banner.show { display: block; }
-  .live-dot { display: inline-block; width: 8px; height: 8px; background: white; border-radius: 50%; margin-right: 6px; animation: blink 1s ease-in-out infinite; }
-  .live-text { color: white; font-family: 'Baloo 2', cursive; font-size: 1rem; font-weight: 700; }
+  .live-dot { display: inline-block; width: 7px; height: 7px; background: white; border-radius: 50%; margin-right: 6px; animation: blink 1s ease-in-out infinite; vertical-align: middle; }
+  .live-text { color: white; font-family: 'Baloo 2', cursive; font-size: 0.9rem; font-weight: 700; vertical-align: middle; }
+  #countdown-banner-sticky { background: rgba(0,80,140,0.88); backdrop-filter: blur(12px); padding: 10px 16px; text-align: center; display: none; }
+  .countdown-label { color: rgba(255,255,255,0.75); font-size: 0.7rem; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 2px; }
+  .countdown-activity { color: white; font-family: 'Baloo 2', cursive; font-size: 0.88rem; font-weight: 700; margin-bottom: 4px; }
+  .countdown-time { font-family: 'Baloo 2', cursive; font-size: 1.5rem; font-weight: 800; color: white; letter-spacing: 2px; }
+  .countdown-time span { display: inline-block; background: rgba(0,0,0,0.25); border-radius: 6px; padding: 1px 7px; margin: 0 1px; }
+  /* STATIC COUNTDOWN */
+  #static-countdown { background: rgba(255,255,255,0.18); backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.35); border-radius: 18px; padding: 14px 18px; margin: 16px 0 6px; text-align: center; display: none; }
+  #static-countdown.show { display: block; }
+  #static-countdown .countdown-time { font-size: 2rem; }
+  /* LEGEND */
   .legend { display: flex; justify-content: center; gap: 16px; margin: 16px 0 0; flex-wrap: wrap; }
   .legend-item { display: flex; align-items: center; gap: 6px; font-size: 0.8rem; font-weight: 700; color: white; }
   .legend-dot { width: 10px; height: 10px; border-radius: 50%; }
+  /* TABS */
   .day-tabs { display: flex; justify-content: center; gap: 10px; margin: 24px 0 16px; }
   .tab-btn { padding: 10px 20px; border: none; border-radius: 50px; font-family: 'Baloo 2', cursive; font-size: 0.95rem; font-weight: 700; cursor: pointer; box-shadow: 0 4px 15px rgba(0,0,0,0.2); color: white; transition: all 0.25s ease; position: relative; }
   .tab-btn:nth-child(1) { background: var(--day1); }
@@ -34,6 +42,7 @@
   .tab-btn.active { transform: translateY(-3px) scale(1.05); box-shadow: 0 8px 20px rgba(0,0,0,0.3); }
   .dot-indicator { position: absolute; top: -3px; right: -3px; width: 10px; height: 10px; background: #ff416c; border-radius: 50%; border: 2px solid white; display: none; animation: blink 1s ease-in-out infinite; }
   .dot-indicator.show { display: block; }
+  /* DAY SECTIONS */
   .day-section { display: none; }
   .day-section.active { display: block; }
   .day-header { display: flex; align-items: center; gap: 14px; padding: 18px 20px; border-radius: 20px 20px 0 0; }
@@ -43,8 +52,9 @@
   .day-number { font-family: 'Baloo 2', cursive; font-size: 2.5rem; font-weight: 800; color: rgba(255,255,255,0.3); line-height: 1; }
   .day-title-block h2 { font-family: 'Baloo 2', cursive; font-size: 1.4rem; font-weight: 800; color: white; text-shadow: 0 2px 8px rgba(0,0,0,0.2); }
   .day-title-block p { color: rgba(255,255,255,0.85); font-size: 0.85rem; font-weight: 600; }
+  /* TIMELINE */
   .timeline { background: rgba(255,255,255,0.95); border-radius: 0 0 24px 24px; overflow: hidden; box-shadow: 0 10px 40px rgba(0,0,0,0.15); margin-bottom: 20px; }
-  .event-card { display: flex; border-bottom: 1px solid rgba(0,0,0,0.06); transition: background 0.3s; position: relative; scroll-margin-top: 20px; }
+  .event-card { display: flex; border-bottom: 1px solid rgba(0,0,0,0.06); transition: background 0.3s; scroll-margin-top: 55px; }
   .event-card:last-child { border-bottom: none; }
   .event-card.current { background: linear-gradient(90deg, rgba(255,65,108,0.08), rgba(255,75,43,0.04)) !important; border-left: 4px solid #ff416c; }
   .event-card.current .activity-name { color: #c0392b; }
@@ -53,7 +63,7 @@
   .event-card.next-up { background: linear-gradient(90deg, rgba(78,205,196,0.07), transparent) !important; border-left: 4px solid var(--day2); }
   .next-badge { display: none; align-items: center; gap: 4px; background: var(--day2); color: white; font-size: 0.65rem; font-weight: 800; padding: 2px 7px; border-radius: 20px; margin-top: 5px; letter-spacing: 0.5px; width: fit-content; }
   .event-card.next-up .next-badge { display: flex; }
-  .event-card.past { opacity: 0.45; }
+  .event-card.past { opacity: 0.4; }
   .time-col { min-width: 80px; padding: 14px 10px 14px 14px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; }
   .time-badge { font-family: 'Baloo 2', cursive; font-size: 0.72rem; font-weight: 700; padding: 3px 7px; border-radius: 8px; color: white; text-align: center; white-space: nowrap; }
   .d1 .time-badge { background: var(--day1); }
@@ -72,13 +82,14 @@
   .pill-outfit { background: #fff0f6; color: #c2185b; border: 1px solid #f8bbd0; }
   .pill-food { background: #fff8e1; color: #e65100; border: 1px solid #ffe082; }
   .pill-note { background: #e8f5e9; color: #2e7d32; border: 1px solid #a5d6a7; }
-  #scroll-now-btn { position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%); background: linear-gradient(135deg, #ff416c, #ff4b2b); color: white; border: none; border-radius: 50px; padding: 12px 24px; font-family: 'Baloo 2', cursive; font-size: 0.9rem; font-weight: 700; cursor: pointer; box-shadow: 0 6px 24px rgba(255,65,108,0.5); display: none; align-items: center; gap: 8px; z-index: 100; white-space: nowrap; }
+  /* SCROLL BTN nhỏ góc phải */
+  #scroll-now-btn { position: fixed; bottom: 24px; right: 16px; background: linear-gradient(135deg, #ff416c, #ff4b2b); color: white; border: none; border-radius: 50px; padding: 10px 14px; font-family: 'Baloo 2', cursive; font-size: 0.8rem; font-weight: 700; cursor: pointer; box-shadow: 0 4px 16px rgba(255,65,108,0.55); display: none; align-items: center; gap: 5px; z-index: 100; white-space: nowrap; }
   #scroll-now-btn.show { display: flex; }
-  .footer-note { text-align: center; color: rgba(255,255,255,0.85); font-size: 0.82rem; font-weight: 600; margin-top: 10px; }
+  .footer-note { text-align: center; color: rgba(255,255,255,0.85); font-size: 0.82rem; font-weight: 600; margin-top: 10px; padding-bottom: 20px; }
   @keyframes bob { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
   @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
-  @keyframes pulse-bg { 0%, 100% { opacity: 1; } 50% { opacity: 0.85; } }
-  @media (max-width: 400px) { .header h1 { font-size: 1.8rem; } .tab-btn { padding: 8px 14px; font-size: 0.85rem; } .time-col { min-width: 68px; } .time-badge { font-size: 0.65rem; } .countdown-time { font-size: 1.6rem; } }
+  @keyframes pulse-bg { 0%, 100% { opacity: 1; } 50% { opacity: 0.88; } }
+  @media (max-width: 400px) { .header h1 { font-size: 1.8rem; } .tab-btn { padding: 8px 14px; font-size: 0.85rem; } .time-col { min-width: 68px; } .time-badge { font-size: 0.65rem; } }
 </style>
 </head>
 <body>
@@ -87,12 +98,13 @@
   <h1>Lịch Trình Phan Thiết</h1>
   <p>📍 Cùng nhau vui — cùng nhau đúng giờ!</p>
 </div>
-<div class="live-banner" id="live-banner"><span class="live-dot"></span><span class="live-text" id="live-text">Đang diễn ra: ...</span></div>
-<div id="countdown-banner">
-  <div class="countdown-label">⏱ Còn bao lâu nữa</div>
-  <div class="countdown-activity" id="countdown-activity"></div>
-  <div class="countdown-time" id="countdown-time"></div>
+<!-- STICKY BAR -->
+<div id="sticky-bar">
+  <div class="live-banner" id="live-banner-sticky"><span class="live-dot"></span><span class="live-text" id="live-text-sticky"></span></div>
+  <div id="countdown-banner-sticky"><div class="countdown-label">⏱ Còn bao lâu nữa</div><div class="countdown-activity" id="countdown-activity-sticky"></div><div class="countdown-time" id="countdown-time-sticky"></div></div>
 </div>
+<!-- STATIC (trước chuyến) -->
+<div id="static-countdown"><div class="countdown-label">🚀 Còn bao lâu đến ngày đi</div><div class="countdown-activity" id="static-activity"></div><div class="countdown-time" id="static-time"></div></div>
 <div class="legend">
   <div class="legend-item"><div class="legend-dot" style="background:#f06292"></div> Trang phục</div>
   <div class="legend-item"><div class="legend-dot" style="background:#ffb74d"></div> Ăn uống</div>
@@ -103,18 +115,20 @@
   <button class="tab-btn" onclick="showDay(2)">🌊 Ngày 2<span class="dot-indicator" id="dot2"></span></button>
   <button class="tab-btn" onclick="showDay(3)">🌅 Ngày 3<span class="dot-indicator" id="dot3"></span></button>
 </div>
+<!-- NGÀY 1 -->
 <div class="day-section active" id="day1">
   <div class="day-header d1"><div class="day-number">01</div><div class="day-title-block"><h2>🚗 Lên Đường!</h2><p>Sài Gòn → Phan Thiết · Nhận Villa · Tắm biển</p></div></div>
   <div class="timeline">
     <div class="event-card" data-day="1" data-start="7:00" data-end="8:00"><div class="time-col d1"><span class="time-badge">7:00</span><div class="dot-line"></div></div><div class="content-col"><div class="activity-row"><span class="activity-icon">🍳</span><span class="activity-name">Ăn sáng + Cà phê tại Sài Gòn</span></div><div class="detail-pills"><span class="pill pill-outfit">👕 Đồ đơn giản, thoải mái</span><span class="pill pill-note">📸 Không chụp ảnh kk</span></div><div class="current-badge">🔴 ĐANG DIỄN RA</div><div class="next-badge">⏩ TIẾP THEO</div></div></div>
     <div class="event-card" data-day="1" data-start="8:00" data-end="12:00"><div class="time-col d1"><span class="time-badge">8:00</span><div class="dot-line"></div></div><div class="content-col"><div class="activity-row"><span class="activity-icon">🚌</span><span class="activity-name">Di chuyển đi Phan Thiết</span></div><div class="current-badge">🔴 ĐANG DIỄN RA</div><div class="next-badge">⏩ TIẾP THEO</div></div></div>
     <div class="event-card" data-day="1" data-start="12:00" data-end="14:00"><div class="time-col d1"><span class="time-badge">12:00</span><div class="dot-line"></div></div><div class="content-col"><div class="activity-row"><span class="activity-icon">🍚</span><span class="activity-name">Ăn trưa: Cơm Niêu</span></div><div class="current-badge">🔴 ĐANG DIỄN RA</div><div class="next-badge">⏩ TIẾP THEO</div></div></div>
-    <div class="event-card" data-day="1" data-start="14:00" data-end="14:30"><div class="time-col d1"><span class="time-badge">14:00</span><div class="dot-line"></div></div><div class="content-col"><div class="activity-row"><span class="activity-icon">🏡</span><span class="activity-name">Check-in Villa</span></div><div class="current-badge">🔴 ĐANG DIỄN RA</div><div class="next-badge">⏩ TIẾP THEO</div></div></div>
-    <div class="event-card" data-day="1" data-start="14:30" data-end="16:00"><div class="time-col d1"><span class="time-badge">14:00–16:00</span><div class="dot-line"></div></div><div class="content-col"><div class="activity-row"><span class="activity-icon">😴</span><span class="activity-name">Nghỉ ngơi</span></div><div class="current-badge">🔴 ĐANG DIỄN RA</div><div class="next-badge">⏩ TIẾP THEO</div></div></div>
+    <div class="event-card" data-day="1" data-start="14:00" data-end="14:01"><div class="time-col d1"><span class="time-badge">14:00</span><div class="dot-line"></div></div><div class="content-col"><div class="activity-row"><span class="activity-icon">🏡</span><span class="activity-name">Check-in Villa</span></div><div class="current-badge">🔴 ĐANG DIỄN RA</div><div class="next-badge">⏩ TIẾP THEO</div></div></div>
+    <div class="event-card" data-day="1" data-start="14:01" data-end="16:00"><div class="time-col d1"><span class="time-badge">14:00–16:00</span><div class="dot-line"></div></div><div class="content-col"><div class="activity-row"><span class="activity-icon">😴</span><span class="activity-name">Nghỉ ngơi</span></div><div class="current-badge">🔴 ĐANG DIỄN RA</div><div class="next-badge">⏩ TIẾP THEO</div></div></div>
     <div class="event-card" data-day="1" data-start="16:00" data-end="18:00"><div class="time-col d1"><span class="time-badge">16:00–18:00</span><div class="dot-line"></div></div><div class="content-col"><div class="activity-row"><span class="activity-icon">🏊</span><span class="activity-name">Tắm Hồ Bơi / Tắm Biển</span></div><div class="current-badge">🔴 ĐANG DIỄN RA</div><div class="next-badge">⏩ TIẾP THEO</div></div></div>
     <div class="event-card" data-day="1" data-start="18:00" data-end="22:00"><div class="time-col d1"><span class="time-badge">18:00–22:00</span><div class="dot-line"></div></div><div class="content-col"><div class="activity-row"><span class="activity-icon">🌅</span><span class="activity-name">Ăn Tối — Ngắm Hoàng Hôn</span></div><div class="detail-pills"><span class="pill pill-outfit">👗 Màu trắng hoặc vàng</span><span class="pill pill-food">🦞 Tự nấu hải sản / đặt mang về villa</span></div><div class="current-badge">🔴 ĐANG DIỄN RA</div><div class="next-badge">⏩ TIẾP THEO</div></div></div>
   </div>
 </div>
+<!-- NGÀY 2 -->
 <div class="day-section" id="day2">
   <div class="day-header d2"><div class="day-number">02</div><div class="day-title-block"><h2>🎢 Ngày Vui Nhất!</h2><p>Bình minh · Safari · Water Park · Ăn tối view biển</p></div></div>
   <div class="timeline">
@@ -128,20 +142,21 @@
     <div class="event-card" data-day="2" data-start="19:00" data-end="21:00"><div class="time-col d2"><span class="time-badge">19:00–21:00</span><div class="dot-line"></div></div><div class="content-col"><div class="activity-row"><span class="activity-icon">🌊</span><span class="activity-name">Ăn Tối</span></div><div class="detail-pills"><span class="pill pill-outfit">✨ Đồ thoải mái — tùy mọi người</span><span class="pill pill-food">🍽️ Nhà Hàng Hương Biển</span></div><div class="current-badge">🔴 ĐANG DIỄN RA</div><div class="next-badge">⏩ TIẾP THEO</div></div></div>
   </div>
 </div>
+<!-- NGÀY 3 -->
 <div class="day-section" id="day3">
   <div class="day-header d3"><div class="day-number">03</div><div class="day-title-block"><h2>🌅 Ngày Cuối — Về Nhà</h2><p>Bình minh · Soạn đồ · Check-out · Trở về SG</p></div></div>
   <div class="timeline">
     <div class="event-card" data-day="3" data-start="6:00" data-end="8:00"><div class="time-col d3"><span class="time-badge">6:00–8:00</span><div class="dot-line"></div></div><div class="content-col"><div class="activity-row"><span class="activity-icon">🌅</span><span class="activity-name">Ngắm Bình Minh Tại Villa</span></div><div class="current-badge">🔴 ĐANG DIỄN RA</div><div class="next-badge">⏩ TIẾP THEO</div></div></div>
     <div class="event-card" data-day="3" data-start="8:00" data-end="10:00"><div class="time-col d3"><span class="time-badge">8:00–10:00</span><div class="dot-line"></div></div><div class="content-col"><div class="activity-row"><span class="activity-icon">☕</span><span class="activity-name">Ăn Sáng + Cà Phê</span></div><div class="detail-pills"><span class="pill pill-food">🍽️ Nhà Hàng Aloha</span><span class="pill pill-food">💰 Combo 1 món + cà phê ~100k/người</span></div><div class="current-badge">🔴 ĐANG DIỄN RA</div><div class="next-badge">⏩ TIẾP THEO</div></div></div>
     <div class="event-card" data-day="3" data-start="10:00" data-end="12:00"><div class="time-col d3"><span class="time-badge">10:00–12:00</span><div class="dot-line"></div></div><div class="content-col"><div class="activity-row"><span class="activity-icon">🧳</span><span class="activity-name">Về Villa Soạn Đồ</span></div><div class="current-badge">🔴 ĐANG DIỄN RA</div><div class="next-badge">⏩ TIẾP THEO</div></div></div>
-    <div class="event-card" data-day="3" data-start="12:00" data-end="12:30"><div class="time-col d3"><span class="time-badge">12:00</span><div class="dot-line"></div></div><div class="content-col"><div class="activity-row"><span class="activity-icon">🔑</span><span class="activity-name">Check-out Villa</span></div><div class="detail-pills"><span class="pill pill-note">⚠️ Dọn phòng xong trước 12h!</span></div><div class="current-badge">🔴 ĐANG DIỄN RA</div><div class="next-badge">⏩ TIẾP THEO</div></div></div>
-    <div class="event-card" data-day="3" data-start="12:30" data-end="23:59"><div class="time-col d3"><span class="time-badge">12:00+</span><div class="dot-line"></div></div><div class="content-col"><div class="activity-row"><span class="activity-icon">🚗</span><span class="activity-name">Ăn Trưa Rồi Về Sài Gòn</span></div><div class="detail-pills"><span class="pill pill-note">🏠 Hẹn gặp lại ở chuyến sau!</span></div><div class="current-badge">🔴 ĐANG DIỄN RA</div><div class="next-badge">⏩ TIẾP THEO</div></div></div>
+    <div class="event-card" data-day="3" data-start="12:00" data-end="12:01"><div class="time-col d3"><span class="time-badge">12:00</span><div class="dot-line"></div></div><div class="content-col"><div class="activity-row"><span class="activity-icon">🔑</span><span class="activity-name">Check-out Villa</span></div><div class="detail-pills"><span class="pill pill-note">⚠️ Dọn phòng xong trước 12h!</span></div><div class="current-badge">🔴 ĐANG DIỄN RA</div><div class="next-badge">⏩ TIẾP THEO</div></div></div>
+    <div class="event-card" data-day="3" data-start="12:01" data-end="23:59"><div class="time-col d3"><span class="time-badge">12:00+</span><div class="dot-line"></div></div><div class="content-col"><div class="activity-row"><span class="activity-icon">🚗</span><span class="activity-name">Ăn Trưa Rồi Về Sài Gòn</span></div><div class="detail-pills"><span class="pill pill-note">🏠 Hẹn gặp lại ở chuyến sau!</span></div><div class="current-badge">🔴 ĐANG DIỄN RA</div><div class="next-badge">⏩ TIẾP THEO</div></div></div>
   </div>
 </div>
 <p class="footer-note">✌️ Đúng giờ là yêu thương · Mình đi cùng nhau thì vui hơn!</p>
-<button id="scroll-now-btn" onclick="scrollToNow()">🔴 Xem hoạt động hiện tại</button>
+<button id="scroll-now-btn" onclick="scrollToNow()">🔴 Hiện tại</button>
 <script>
-  const TRIP_START = new Date('2026-04-27'); // Ngày hôm nay để test
+  const TRIP_START = new Date('2026-04-27'); // ← ĐỔI ngày đi thật
   function getTripDay() {
     const now = new Date();
     const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
@@ -150,70 +165,74 @@
   }
   function parseTime(t) { const [h, m] = t.split(':').map(Number); return h * 60 + (m || 0); }
   function getNowMin() { const n = new Date(); return n.getHours() * 60 + n.getMinutes(); }
-  function getActivityName(c) { return c.querySelector('.activity-name').textContent; }
-  let countdownInterval = null;
+  function getName(c) { return c.querySelector('.activity-name').textContent; }
+  let cdInterval = null;
   function updateTimeline() {
-    const tripDay = getTripDay();
-    const nowMin = getNowMin();
+    const tripDay = getTripDay(), nowMin = getNowMin();
     const cards = document.querySelectorAll('.event-card[data-day]');
-    cards.forEach(c => c.classList.remove('current', 'next-up', 'past'));
-    if (tripDay < 1 || tripDay > 3) { updateCountdownToBefore(tripDay); return; }
-    let currentCard = null, nextCard = null;
+    cards.forEach(c => c.classList.remove('current','next-up','past'));
+    if (tripDay < 1 || tripDay > 3) { updatePreTrip(tripDay); hideStickyBar(); return; }
+    document.getElementById('static-countdown').style.display = 'none';
+    let cur = null, nxt = null;
     cards.forEach(c => { if (parseInt(c.dataset.day) < tripDay) c.classList.add('past'); });
-    const todayCards = Array.from(cards).filter(c => parseInt(c.dataset.day) === tripDay);
-    todayCards.forEach(c => {
-      const start = parseTime(c.dataset.start), end = parseTime(c.dataset.end);
-      if (nowMin >= start && nowMin < end) { if (!currentCard) currentCard = c; }
-      else if (nowMin < start && !nextCard) nextCard = c;
-      else if (nowMin >= end) c.classList.add('past');
+    Array.from(cards).filter(c => parseInt(c.dataset.day) === tripDay).forEach(c => {
+      const s = parseTime(c.dataset.start), e = parseTime(c.dataset.end);
+      if (nowMin >= s && nowMin < e) { if (!cur) cur = c; }
+      else if (nowMin < s && !nxt) nxt = c;
+      else if (nowMin >= e) c.classList.add('past');
     });
-    if (!currentCard && !nextCard) todayCards.forEach(c => c.classList.add('past'));
-    if (currentCard) { currentCard.classList.add('current'); currentCard.classList.remove('past'); }
-    if (nextCard) { nextCard.classList.add('next-up'); nextCard.classList.remove('past'); }
-    const liveBanner = document.getElementById('live-banner');
-    const cdBanner = document.getElementById('countdown-banner');
-    if (currentCard) {
-      liveBanner.classList.add('show'); cdBanner.classList.remove('show');
-      document.getElementById('live-text').textContent = 'Đang diễn ra: ' + getActivityName(currentCard);
-    } else if (nextCard) {
-      liveBanner.classList.remove('show'); cdBanner.classList.add('show');
-      document.getElementById('countdown-activity').textContent = '⏩ ' + getActivityName(nextCard);
-      startCountdown(nextCard);
-    } else { liveBanner.classList.remove('show'); cdBanner.classList.remove('show'); }
+    if (!cur && !nxt) Array.from(cards).filter(c => parseInt(c.dataset.day) === tripDay).forEach(c => c.classList.add('past'));
+    if (cur) { cur.classList.add('current'); cur.classList.remove('past'); }
+    if (nxt) { nxt.classList.add('next-up'); nxt.classList.remove('past'); }
+    updateStickyBar(cur, nxt);
     document.querySelectorAll('.dot-indicator').forEach(d => d.classList.remove('show'));
-    if (tripDay >= 1 && tripDay <= 3 && (currentCard || nextCard)) document.getElementById('dot' + tripDay)?.classList.add('show');
+    if (cur || nxt) document.getElementById('dot' + tripDay)?.classList.add('show');
     const btn = document.getElementById('scroll-now-btn');
-    (currentCard || nextCard) ? btn.classList.add('show') : btn.classList.remove('show');
+    (cur || nxt) ? btn.classList.add('show') : btn.classList.remove('show');
   }
-  function startCountdown(card) {
-    if (countdownInterval) clearInterval(countdownInterval);
-    const el = document.getElementById('countdown-time');
+  function updateStickyBar(cur, nxt) {
+    const bar = document.getElementById('sticky-bar');
+    const live = document.getElementById('live-banner-sticky');
+    const cd = document.getElementById('countdown-banner-sticky');
+    if (cur) {
+      bar.classList.add('show'); live.classList.add('show'); cd.style.display = 'none';
+      document.getElementById('live-text-sticky').textContent = 'Đang diễn ra: ' + getName(cur);
+    } else if (nxt) {
+      bar.classList.add('show'); live.classList.remove('show'); cd.style.display = 'block';
+      document.getElementById('countdown-activity-sticky').textContent = '⏩ ' + getName(nxt);
+      startCountdown(nxt, document.getElementById('countdown-time-sticky'));
+    } else { hideStickyBar(); }
+  }
+  function hideStickyBar() {
+    document.getElementById('sticky-bar').classList.remove('show');
+    document.getElementById('live-banner-sticky').classList.remove('show');
+    document.getElementById('countdown-banner-sticky').style.display = 'none';
+  }
+  function startCountdown(card, el) {
+    if (cdInterval) clearInterval(cdInterval);
     function tick() {
-      const now = new Date();
-      const sm = parseTime(card.dataset.start);
+      const now = new Date(), sm = parseTime(card.dataset.start);
       const target = new Date(); target.setHours(Math.floor(sm/60), sm%60, 0, 0);
-      let diff = target - now;
-      if (diff < 0) { el.textContent = '00:00:00'; return; }
+      let diff = target - now; if (diff < 0) { el.textContent = '00:00:00'; return; }
       const h = Math.floor(diff/3600000), m = Math.floor((diff%3600000)/60000), s = Math.floor((diff%60000)/1000);
-      el.innerHTML = `<span>${String(h).padStart(2,'0')}</span> : <span>${String(m).padStart(2,'0')}</span> : <span>${String(s).padStart(2,'0')}</span>`;
+      el.innerHTML = `<span>${String(h).padStart(2,'0')}</span>:<span>${String(m).padStart(2,'0')}</span>:<span>${String(s).padStart(2,'0')}</span>`;
     }
-    tick(); countdownInterval = setInterval(tick, 1000);
+    tick(); cdInterval = setInterval(tick, 1000);
   }
-  function updateCountdownToBefore(tripDay) {
-    document.getElementById('live-banner').classList.remove('show');
+  function updatePreTrip(tripDay) {
     if (tripDay < 1) {
-      document.getElementById('countdown-banner').classList.add('show');
-      document.getElementById('countdown-activity').textContent = '🚀 Đến ngày khởi hành!';
-      if (countdownInterval) clearInterval(countdownInterval);
-      const el = document.getElementById('countdown-time');
+      document.getElementById('static-countdown').classList.add('show');
+      document.getElementById('static-activity').textContent = '🚀 Đến ngày khởi hành!';
+      if (cdInterval) clearInterval(cdInterval);
+      const el = document.getElementById('static-time');
       function tick() {
         const now = new Date(), target = new Date(TRIP_START); target.setHours(7,0,0,0);
         let diff = target - now; if (diff < 0) { el.textContent = 'Lên đường thôi! 🎉'; return; }
         const d = Math.floor(diff/86400000), h = Math.floor((diff%86400000)/3600000), m = Math.floor((diff%3600000)/60000), s = Math.floor((diff%60000)/1000);
-        el.innerHTML = d > 0 ? `<span>${d}d</span> <span>${String(h).padStart(2,'0')}h</span> <span>${String(m).padStart(2,'0')}m</span>` : `<span>${String(h).padStart(2,'0')}</span> : <span>${String(m).padStart(2,'0')}</span> : <span>${String(s).padStart(2,'0')}</span>`;
+        el.innerHTML = d > 0 ? `<span>${d}d</span> <span>${String(h).padStart(2,'0')}h</span> <span>${String(m).padStart(2,'0')}m</span>` : `<span>${String(h).padStart(2,'0')}</span>:<span>${String(m).padStart(2,'0')}</span>:<span>${String(s).padStart(2,'0')}</span>`;
       }
-      tick(); countdownInterval = setInterval(tick, 1000);
-    } else { document.getElementById('countdown-banner').classList.remove('show'); }
+      tick(); cdInterval = setInterval(tick, 1000);
+    }
   }
   function scrollToNow() {
     const card = document.querySelector('.event-card.current') || document.querySelector('.event-card.next-up');
