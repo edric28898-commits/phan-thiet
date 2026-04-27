@@ -13,7 +13,6 @@
   .header-emoji { font-size: 52px; display: block; margin-bottom: 8px; animation: bob 3s ease-in-out infinite; }
   .header h1 { font-family: 'Baloo 2', cursive; font-size: 2.2rem; font-weight: 800; color: white; text-shadow: 0 3px 12px rgba(0,0,0,0.3); line-height: 1.1; }
   .header p { color: rgba(255,255,255,0.9); font-size: 1rem; margin-top: 8px; font-weight: 600; letter-spacing: 1px; }
-  /* STICKY BAR */
   #sticky-bar { position: sticky; top: 0; z-index: 50; margin: 0 -16px; padding: 0 16px; display: none; }
   #sticky-bar.show { display: block; }
   .live-banner { background: linear-gradient(135deg, #ff416c, #ff4b2b); padding: 10px 16px; text-align: center; display: none; animation: pulse-bg 2s ease-in-out infinite; }
@@ -25,15 +24,12 @@
   .countdown-activity { color: white; font-family: 'Baloo 2', cursive; font-size: 0.88rem; font-weight: 700; margin-bottom: 4px; }
   .countdown-time { font-family: 'Baloo 2', cursive; font-size: 1.5rem; font-weight: 800; color: white; letter-spacing: 2px; }
   .countdown-time span { display: inline-block; background: rgba(0,0,0,0.25); border-radius: 6px; padding: 1px 7px; margin: 0 1px; }
-  /* STATIC COUNTDOWN */
   #static-countdown { background: rgba(255,255,255,0.18); backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.35); border-radius: 18px; padding: 14px 18px; margin: 16px 0 6px; text-align: center; display: none; }
   #static-countdown.show { display: block; }
   #static-countdown .countdown-time { font-size: 2rem; }
-  /* LEGEND */
   .legend { display: flex; justify-content: center; gap: 16px; margin: 16px 0 0; flex-wrap: wrap; }
   .legend-item { display: flex; align-items: center; gap: 6px; font-size: 0.8rem; font-weight: 700; color: white; }
   .legend-dot { width: 10px; height: 10px; border-radius: 50%; }
-  /* TABS */
   .day-tabs { display: flex; justify-content: center; gap: 10px; margin: 24px 0 16px; }
   .tab-btn { padding: 10px 20px; border: none; border-radius: 50px; font-family: 'Baloo 2', cursive; font-size: 0.95rem; font-weight: 700; cursor: pointer; box-shadow: 0 4px 15px rgba(0,0,0,0.2); color: white; transition: all 0.25s ease; position: relative; }
   .tab-btn:nth-child(1) { background: var(--day1); }
@@ -42,7 +38,6 @@
   .tab-btn.active { transform: translateY(-3px) scale(1.05); box-shadow: 0 8px 20px rgba(0,0,0,0.3); }
   .dot-indicator { position: absolute; top: -3px; right: -3px; width: 10px; height: 10px; background: #ff416c; border-radius: 50%; border: 2px solid white; display: none; animation: blink 1s ease-in-out infinite; }
   .dot-indicator.show { display: block; }
-  /* DAY SECTIONS */
   .day-section { display: none; }
   .day-section.active { display: block; }
   .day-header { display: flex; align-items: center; gap: 14px; padding: 18px 20px; border-radius: 20px 20px 0 0; }
@@ -52,7 +47,6 @@
   .day-number { font-family: 'Baloo 2', cursive; font-size: 2.5rem; font-weight: 800; color: rgba(255,255,255,0.3); line-height: 1; }
   .day-title-block h2 { font-family: 'Baloo 2', cursive; font-size: 1.4rem; font-weight: 800; color: white; text-shadow: 0 2px 8px rgba(0,0,0,0.2); }
   .day-title-block p { color: rgba(255,255,255,0.85); font-size: 0.85rem; font-weight: 600; }
-  /* TIMELINE */
   .timeline { background: rgba(255,255,255,0.95); border-radius: 0 0 24px 24px; overflow: hidden; box-shadow: 0 10px 40px rgba(0,0,0,0.15); margin-bottom: 20px; }
   .event-card { display: flex; border-bottom: 1px solid rgba(0,0,0,0.06); transition: background 0.3s; scroll-margin-top: 55px; }
   .event-card:last-child { border-bottom: none; }
@@ -82,13 +76,39 @@
   .pill-outfit { background: #fff0f6; color: #c2185b; border: 1px solid #f8bbd0; }
   .pill-food { background: #fff8e1; color: #e65100; border: 1px solid #ffe082; }
   .pill-note { background: #e8f5e9; color: #2e7d32; border: 1px solid #a5d6a7; }
-  /* SCROLL BTN nhỏ góc phải */
-  #scroll-now-btn { position: fixed; bottom: 24px; right: 16px; background: linear-gradient(135deg, #ff416c, #ff4b2b); color: white; border: none; border-radius: 50px; padding: 10px 14px; font-family: 'Baloo 2', cursive; font-size: 0.8rem; font-weight: 700; cursor: pointer; box-shadow: 0 4px 16px rgba(255,65,108,0.55); display: none; align-items: center; gap: 5px; z-index: 100; white-space: nowrap; }
+  /* NÚT TRÒN NOW */
+  #scroll-now-btn {
+    position: fixed;
+    bottom: 28px;
+    right: 20px;
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #ff416c, #ff4b2b);
+    color: white;
+    border: none;
+    font-family: 'Baloo 2', cursive;
+    font-size: 0.72rem;
+    font-weight: 800;
+    cursor: pointer;
+    box-shadow: 0 4px 18px rgba(255,65,108,0.6);
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1px;
+    z-index: 100;
+    line-height: 1.1;
+    animation: pop-in 0.3s ease both;
+  }
+  #scroll-now-btn .now-dot { width: 7px; height: 7px; background: white; border-radius: 50%; animation: blink 1s ease-in-out infinite; }
+  #scroll-now-btn .now-label { font-size: 0.68rem; letter-spacing: 1px; }
   #scroll-now-btn.show { display: flex; }
   .footer-note { text-align: center; color: rgba(255,255,255,0.85); font-size: 0.82rem; font-weight: 600; margin-top: 10px; padding-bottom: 20px; }
   @keyframes bob { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
   @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
   @keyframes pulse-bg { 0%, 100% { opacity: 1; } 50% { opacity: 0.88; } }
+  @keyframes pop-in { from { opacity: 0; transform: scale(0.5); } to { opacity: 1; transform: scale(1); } }
   @media (max-width: 400px) { .header h1 { font-size: 1.8rem; } .tab-btn { padding: 8px 14px; font-size: 0.85rem; } .time-col { min-width: 68px; } .time-badge { font-size: 0.65rem; } }
 </style>
 </head>
@@ -98,12 +118,10 @@
   <h1>Lịch Trình Phan Thiết</h1>
   <p>📍 Cùng nhau vui — cùng nhau đúng giờ!</p>
 </div>
-<!-- STICKY BAR -->
 <div id="sticky-bar">
   <div class="live-banner" id="live-banner-sticky"><span class="live-dot"></span><span class="live-text" id="live-text-sticky"></span></div>
   <div id="countdown-banner-sticky"><div class="countdown-label">⏱ Còn bao lâu nữa</div><div class="countdown-activity" id="countdown-activity-sticky"></div><div class="countdown-time" id="countdown-time-sticky"></div></div>
 </div>
-<!-- STATIC (trước chuyến) -->
 <div id="static-countdown"><div class="countdown-label">🚀 Còn bao lâu đến ngày đi</div><div class="countdown-activity" id="static-activity"></div><div class="countdown-time" id="static-time"></div></div>
 <div class="legend">
   <div class="legend-item"><div class="legend-dot" style="background:#f06292"></div> Trang phục</div>
@@ -115,7 +133,6 @@
   <button class="tab-btn" onclick="showDay(2)">🌊 Ngày 2<span class="dot-indicator" id="dot2"></span></button>
   <button class="tab-btn" onclick="showDay(3)">🌅 Ngày 3<span class="dot-indicator" id="dot3"></span></button>
 </div>
-<!-- NGÀY 1 -->
 <div class="day-section active" id="day1">
   <div class="day-header d1"><div class="day-number">01</div><div class="day-title-block"><h2>🚗 Lên Đường!</h2><p>Sài Gòn → Phan Thiết · Nhận Villa · Tắm biển</p></div></div>
   <div class="timeline">
@@ -128,7 +145,6 @@
     <div class="event-card" data-day="1" data-start="18:00" data-end="22:00"><div class="time-col d1"><span class="time-badge">18:00–22:00</span><div class="dot-line"></div></div><div class="content-col"><div class="activity-row"><span class="activity-icon">🌅</span><span class="activity-name">Ăn Tối — Ngắm Hoàng Hôn</span></div><div class="detail-pills"><span class="pill pill-outfit">👗 Màu trắng hoặc vàng</span><span class="pill pill-food">🦞 Tự nấu hải sản / đặt mang về villa</span></div><div class="current-badge">🔴 ĐANG DIỄN RA</div><div class="next-badge">⏩ TIẾP THEO</div></div></div>
   </div>
 </div>
-<!-- NGÀY 2 -->
 <div class="day-section" id="day2">
   <div class="day-header d2"><div class="day-number">02</div><div class="day-title-block"><h2>🎢 Ngày Vui Nhất!</h2><p>Bình minh · Safari · Water Park · Ăn tối view biển</p></div></div>
   <div class="timeline">
@@ -142,7 +158,6 @@
     <div class="event-card" data-day="2" data-start="19:00" data-end="21:00"><div class="time-col d2"><span class="time-badge">19:00–21:00</span><div class="dot-line"></div></div><div class="content-col"><div class="activity-row"><span class="activity-icon">🌊</span><span class="activity-name">Ăn Tối</span></div><div class="detail-pills"><span class="pill pill-outfit">✨ Đồ thoải mái — tùy mọi người</span><span class="pill pill-food">🍽️ Nhà Hàng Hương Biển</span></div><div class="current-badge">🔴 ĐANG DIỄN RA</div><div class="next-badge">⏩ TIẾP THEO</div></div></div>
   </div>
 </div>
-<!-- NGÀY 3 -->
 <div class="day-section" id="day3">
   <div class="day-header d3"><div class="day-number">03</div><div class="day-title-block"><h2>🌅 Ngày Cuối — Về Nhà</h2><p>Bình minh · Soạn đồ · Check-out · Trở về SG</p></div></div>
   <div class="timeline">
@@ -154,7 +169,10 @@
   </div>
 </div>
 <p class="footer-note">✌️ Đúng giờ là yêu thương · Mình đi cùng nhau thì vui hơn!</p>
-<button id="scroll-now-btn" onclick="scrollToNow()">🔴 Hiện tại</button>
+<button id="scroll-now-btn" onclick="scrollToNow()">
+  <span class="now-dot"></span>
+  <span class="now-label">NOW</span>
+</button>
 <script>
   const TRIP_START = new Date('2026-04-27'); // ← ĐỔI ngày đi thật
   function getTripDay() {
