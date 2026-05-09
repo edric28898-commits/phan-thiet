@@ -15,73 +15,74 @@
 –border:#E2EAF4;–green:#38A169;–green-soft:#F0FFF4;
 –sans:-apple-system,BlinkMacSystemFont,‘Segoe UI’,‘Inter’,Roboto,Helvetica,Arial,sans-serif;–mono:‘SF Mono’,‘Fira Code’,‘Roboto Mono’,Menlo,Consolas,monospace;
 }
-body{background:#EEF2F7;font-family:var(–sans);min-height:100vh;display:flex;align-items:flex-start;justify-content:center;padding:32px 16px 48px}
+body{background:#EEF2F7;font-family:-apple-system,BlinkMacSystemFont,‘Segoe UI’,Roboto,sans-serif;min-height:100vh;display:flex;align-items:flex-start;justify-content:center;padding:32px 16px 48px}
 .wrapper{width:100%;max-width:520px;display:flex;flex-direction:column;gap:0}
 
-.chat-header{background:var(–navy);border-radius:16px 16px 0 0;padding:14px 18px;display:flex;align-items:center;gap:10px}
-.hdr-dot{width:8px;height:8px;border-radius:50%;background:var(–cyan)}
-.hdr-title{font-size:13px;font-weight:500;color:var(–white)}
+.chat-header{background:#0A1628;border-radius:16px 16px 0 0;padding:14px 18px;display:flex;align-items:center;gap:10px}
+.hdr-dot{width:8px;height:8px;border-radius:50%;background:#00C2D4}
+.hdr-title{font-size:13px;font-weight:500;color:#FFFFFF}
 .hdr-sub{margin-left:auto}
-.hdr-badge{background:rgba(0,194,212,0.18);color:var(–cyan);font-size:10px;padding:2px 8px;border-radius:4px;font-family:var(–mono)}
+.hdr-badge{background:rgba(0,194,212,0.18);color:#00C2D4;font-size:10px;padding:2px 8px;border-radius:4px;font-family:Menlo,Consolas,monospace}
 
-.chat-body{background:var(–white);padding:16px;display:flex;flex-direction:column;gap:12px;border-left:1px solid var(–border);border-right:1px solid var(–border)}
+.chat-body{background:#FFFFFF;padding:16px;display:flex;flex-direction:column;gap:12px;border-left:1px solid #E2EAF4;border-right:1px solid #E2EAF4}
 
 .msg{display:flex;gap:8px;align-items:flex-start}
 .av{width:30px;height:30px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:600;flex-shrink:0;margin-top:2px}
 .av-linh{background:#EDE9FE;color:#5B21B6}
 .av-thao{background:#FEE2E2;color:#991B1B}
-.av-sm{background:var(–navy);color:var(–cyan)}
-.msg-name{font-size:11px;font-weight:600;color:var(–gray);margin-bottom:3px;display:flex;align-items:center;gap:5px}
-.msg-time{font-size:10px;color:var(–gray2);font-weight:400}
-.badge-sm{font-size:9px;background:var(–navy);color:var(–cyan);padding:1px 5px;border-radius:3px;font-family:var(–mono)}
-.bubble{font-size:13px;color:var(–text);line-height:1.55;background:var(–offwhite);border-radius:4px 12px 12px 12px;padding:9px 12px;max-width:380px}
-.mention{color:var(–blue);font-weight:500}
+.av-sm{background:#0A1628;color:#00C2D4}
+.msg-name{font-size:11px;font-weight:600;color:#6B7A8D;margin-bottom:3px;display:flex;align-items:center;gap:5px}
+.msg-time{font-size:10px;color:#9AABB8;font-weight:400}
+.badge-sm{font-size:9px;background:#0A1628;color:#00C2D4;padding:1px 5px;border-radius:3px;font-family:Menlo,Consolas,monospace}
+.bubble{font-size:13px;color:#1A2332;line-height:1.55;background:#F7F9FC;border-radius:4px 12px 12px 12px;padding:9px 12px;max-width:380px}
+.bubble-agent{font-size:13px;color:#1A2332;line-height:1.55;background:#F7F9FC;border-radius:4px 12px 12px 12px;padding:9px 12px;max-width:380px;border-left:3px solid #00C2D4}
+.mention{color:#1E6FE8;font-weight:500}
 
-.sm-reply{background:var(–navy2);border-radius:4px 12px 12px 12px;padding:11px 13px;max-width:380px;border-left:2px solid var(–cyan)}
-.sm-reply-label{font-size:9px;font-family:var(–mono);color:var(–cyan);letter-spacing:1px;margin-bottom:6px}
+.sm-reply{background:#0F2040;border-radius:4px 12px 12px 12px;padding:11px 13px;max-width:380px;border-left:2px solid #00C2D4}
+.sm-reply-label{font-size:9px;font-family:Menlo,Consolas,monospace;color:#00C2D4;letter-spacing:1px;margin-bottom:6px}
 .sm-reply-text{font-size:13px;color:#C8D8F0;line-height:1.55}
-.sm-reply-text strong{color:var(–white)}
+.sm-reply-text strong{color:#FFFFFF}
 .sm-doc-found{display:flex;align-items:center;gap:8px;background:rgba(0,194,212,0.1);border:1px solid rgba(0,194,212,0.25);border-radius:8px;padding:8px 10px;margin-top:8px}
-.sm-doc-name{font-size:12px;font-weight:600;color:var(–white)}
-.sm-doc-meta{font-size:10px;color:var(–gray2);margin-top:1px}
+.sm-doc-name{font-size:12px;font-weight:600;color:#FFFFFF}
+.sm-doc-meta{font-size:10px;color:#9AABB8;margin-top:1px}
 
 .step-divider{display:flex;align-items:center;gap:8px;padding:4px 0}
-.step-line{flex:1;height:1px;background:var(–border)}
-.step-label{font-size:9px;font-family:var(–mono);color:var(–gray2);letter-spacing:1px;white-space:nowrap}
+.step-line{flex:1;height:1px;background:#E2EAF4}
+.step-label{font-size:9px;font-family:Menlo,Consolas,monospace;color:#9AABB8;letter-spacing:1px;white-space:nowrap}
 
-.action-card{border:1.5px solid var(–blue);border-radius:12px;overflow:hidden;background:var(–white);box-shadow:0 2px 12px rgba(30,111,232,0.08);margin-top:2px}
-.card-hdr{background:var(–blue);padding:9px 14px;display:flex;align-items:center;gap:8px}
+.action-card{border:1.5px solid #1E6FE8;border-radius:12px;overflow:hidden;background:#FFFFFF;box-shadow:0 2px 12px rgba(30,111,232,0.08);margin-top:2px}
+.card-hdr{background:#1E6FE8;padding:9px 14px;display:flex;align-items:center;gap:8px}
 .card-hdr-icon{width:18px;height:18px;background:rgba(255,255,255,0.2);border-radius:4px;display:flex;align-items:center;justify-content:center;font-size:11px}
-.card-hdr-label{font-size:11px;font-weight:600;color:var(–white);letter-spacing:0.5px}
-.card-type{margin-left:auto;font-size:10px;font-family:var(–mono);background:rgba(255,255,255,0.18);color:var(–white);padding:2px 7px;border-radius:4px}
+.card-hdr-label{font-size:11px;font-weight:600;color:#FFFFFF;letter-spacing:0.5px}
+.card-type{margin-left:auto;font-size:10px;font-family:Menlo,Consolas,monospace;background:rgba(255,255,255,0.18);color:#FFFFFF;padding:2px 7px;border-radius:4px}
 .card-body{padding:14px}
 
 .card-action-row{display:flex;align-items:flex-start;gap:10px;margin-bottom:12px}
-.card-action-icon{width:34px;height:34px;border-radius:8px;background:var(–blue-soft);display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0}
-.card-action-title{font-size:13px;font-weight:600;color:var(–text);margin-bottom:2px}
-.card-action-meta{font-size:11px;color:var(–gray)}
-.card-action-meta span{color:var(–blue);font-weight:500}
+.card-action-icon{width:34px;height:34px;border-radius:8px;background:#E8F0FD;display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0}
+.card-action-title{font-size:13px;font-weight:600;color:#1A2332;margin-bottom:2px}
+.card-action-meta{font-size:11px;color:#6B7A8D}
+.card-action-meta span{color:#1E6FE8;font-weight:500}
 
-.ba-wrap{background:var(–offwhite);border-radius:8px;padding:10px 12px;margin-bottom:10px;border-left:2px solid var(–blue)}
+.ba-wrap{background:#F7F9FC;border-radius:8px;padding:10px 12px;margin-bottom:10px;border-left:2px solid #1E6FE8}
 .ba-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:8px}
 .ba-label{font-size:10px;font-weight:600;margin-bottom:4px}
 .ba-before .ba-label{color:#E53E3E}
-.ba-after .ba-label{color:var(–green)}
-.ba-text{font-size:11.5px;color:var(–text);line-height:1.5}
+.ba-after .ba-label{color:#38A169}
+.ba-text{font-size:11.5px;color:#1A2332;line-height:1.5}
 
-.expand-btn{font-size:11px;color:var(–blue);background:none;border:none;cursor:pointer;padding:0;display:flex;align-items:center;gap:4px;font-family:var(–sans);font-weight:500}
+.expand-btn{font-size:11px;color:#1E6FE8;background:none;border:none;cursor:pointer;padding:0;display:flex;align-items:center;gap:4px;font-family:-apple-system,BlinkMacSystemFont,‘Segoe UI’,Roboto,sans-serif;font-weight:500}
 .expand-icon{font-size:12px;transition:transform 0.2s;display:inline-block}
 .expand-icon.open{transform:rotate(180deg)}
-.expanded{display:none;margin-top:10px;padding-top:10px;border-top:1px solid var(–border)}
+.expanded{display:none;margin-top:10px;padding-top:10px;border-top:1px solid #E2EAF4}
 .expanded.on{display:block}
-.detail-label{font-size:10px;font-weight:600;color:var(–gray);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:4px}
-.detail-quote{font-size:11.5px;font-style:italic;line-height:1.5;background:var(–navy);color:#C8D8F0;border-radius:6px;padding:8px 10px;margin-bottom:8px}
+.detail-label{font-size:10px;font-weight:600;color:#6B7A8D;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:4px}
+.detail-quote{font-size:11.5px;font-style:italic;line-height:1.5;background:#0A1628;color:#C8D8F0;border-radius:6px;padding:8px 10px;margin-bottom:8px}
 .tags{display:flex;flex-wrap:wrap;gap:5px}
-.tag{font-size:10px;padding:2px 8px;border-radius:99px;font-family:var(–mono)}
+.tag{font-size:10px;padding:2px 8px;border-radius:99px;font-family:Menlo,Consolas,monospace}
 .tag-blue{background:#DBEAFE;color:#1D4ED8}
 .tag-green{background:#D1FAE5;color:#065F46}
 .tag-amber{background:#FEF3C7;color:#92400E}
-.tag-gray{background:var(–offwhite);color:var(–gray);border:1px solid var(–border)}
+.tag-gray{background:#F7F9FC;color:#6B7A8D;border:1px solid #E2EAF4}
 
 .impact-row{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:12px}
 .impact{font-size:10px;padding:3px 9px;border-radius:4px;font-weight:500}
@@ -90,46 +91,46 @@ body{background:#EEF2F7;font-family:var(–sans);min-height:100vh;display:flex;a
 .imp-time{background:#D1FAE5;color:#065F46}
 
 .btns{display:flex;gap:8px}
-.btn{flex:1;padding:9px 0;border-radius:8px;font-size:12px;font-weight:500;cursor:pointer;border:none;font-family:var(–sans);display:flex;align-items:center;justify-content:center;gap:5px;transition:opacity 0.15s,transform 0.1s}
+.btn{flex:1;padding:9px 0;border-radius:8px;font-size:12px;font-weight:500;cursor:pointer;border:none;font-family:-apple-system,BlinkMacSystemFont,‘Segoe UI’,Roboto,sans-serif;display:flex;align-items:center;justify-content:center;gap:5px;transition:opacity 0.15s,transform 0.1s}
 .btn:hover{opacity:0.85}
 .btn:active{transform:scale(0.97)}
-.btn-confirm{background:var(–blue);color:var(–white)}
-.btn-edit{background:var(–offwhite);color:var(–text);border:1px solid var(–border)}
-.btn-skip{background:var(–offwhite);color:var(–gray);border:1px solid var(–border)}
+.btn-confirm{background:#1E6FE8;color:#FFFFFF}
+.btn-edit{background:#F7F9FC;color:#1A2332;border:1px solid #E2EAF4}
+.btn-skip{background:#F7F9FC;color:#6B7A8D;border:1px solid #E2EAF4}
 
 .edit-area{display:none}
 .edit-area.on{display:block;margin-top:10px}
-.edit-label-txt{font-size:11px;font-weight:600;color:var(–gray);margin-bottom:5px}
-.edit-ta{width:100%;padding:9px 10px;font-size:12px;border:1.5px solid var(–blue);border-radius:8px;background:var(–white);color:var(–text);resize:vertical;min-height:64px;font-family:var(–sans);margin-bottom:8px;outline:none}
+.edit-label-txt{font-size:11px;font-weight:600;color:#6B7A8D;margin-bottom:5px}
+.edit-ta{width:100%;padding:9px 10px;font-size:12px;border:1.5px solid #1E6FE8;border-radius:8px;background:#FFFFFF;color:#1A2332;resize:vertical;min-height:64px;font-family:-apple-system,BlinkMacSystemFont,‘Segoe UI’,Roboto,sans-serif;margin-bottom:8px;outline:none}
 .edit-btns{display:flex;gap:8px}
-.btn-save{flex:1;background:var(–blue);color:var(–white)}
-.btn-cancel{padding:9px 14px;background:var(–offwhite);color:var(–gray);border:1px solid var(–border)}
+.btn-save{flex:1;background:#1E6FE8;color:#FFFFFF}
+.btn-cancel{padding:9px 14px;background:#F7F9FC;color:#6B7A8D;border:1px solid #E2EAF4}
 
-.confirmed{display:none;background:var(–green-soft);border:1px solid #9AE6B4;border-radius:10px;padding:12px 14px}
+.confirmed{display:none;background:#F0FFF4;border:1px solid #9AE6B4;border-radius:10px;padding:12px 14px}
 .confirmed.on{display:flex;gap:10px;align-items:flex-start}
-.conf-icon{width:28px;height:28px;background:var(–green);border-radius:50%;display:flex;align-items:center;justify-content:center;color:white;font-size:14px;flex-shrink:0}
-.conf-title{font-size:12px;font-weight:600;color:var(–green);margin-bottom:2px}
-.conf-sub{font-size:11px;color:var(–gray)}
+.conf-icon{width:28px;height:28px;background:#38A169;border-radius:50%;display:flex;align-items:center;justify-content:center;color:white;font-size:14px;flex-shrink:0}
+.conf-title{font-size:12px;font-weight:600;color:#38A169;margin-bottom:2px}
+.conf-sub{font-size:11px;color:#6B7A8D}
 
-.skipped{display:none;font-size:11px;color:var(–gray2);text-align:center;padding:10px 0 4px;font-style:italic}
+.skipped{display:none;font-size:11px;color:#9AABB8;text-align:center;padding:10px 0 4px;font-style:italic}
 .skipped.on{display:block}
 
 .notif-msg{display:none}
 .notif-msg.on{display:flex;gap:8px;align-items:flex-start}
-.notif-bubble{font-size:13px;color:var(–text);line-height:1.6;background:var(–offwhite);border-radius:4px 12px 12px 12px;padding:9px 12px;max-width:380px}
-.noti-tag{display:inline-flex;align-items:center;gap:3px;background:rgba(30,111,232,0.1);color:var(–blue);font-size:11px;font-weight:600;padding:1px 6px;border-radius:4px}
+.notif-bubble{font-size:13px;color:#1A2332;line-height:1.6;background:#F7F9FC;border-radius:4px 12px 12px 12px;padding:9px 12px;max-width:380px}
+.noti-tag{display:inline-flex;align-items:center;gap:3px;background:rgba(30,111,232,0.1);color:#1E6FE8;font-size:11px;font-weight:600;padding:1px 6px;border-radius:4px}
 
 .linh-react{display:none}
 .linh-react.on{display:flex;gap:8px;align-items:flex-start}
 
-.chat-footer{background:var(–navy);border-radius:0 0 16px 16px;padding:10px 14px;display:flex;align-items:center;gap:10px}
-.chat-input{flex:1;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.12);border-radius:8px;padding:8px 12px;font-size:12px;color:var(–gray2);font-family:var(–sans);outline:none}
-.chat-send{width:32px;height:32px;background:var(–blue);border-radius:8px;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;color:white;font-size:14px}
+.chat-footer{background:#0A1628;border-radius:0 0 16px 16px;padding:10px 14px;display:flex;align-items:center;gap:10px}
+.chat-input{flex:1;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.12);border-radius:8px;padding:8px 12px;font-size:12px;color:#9AABB8;font-family:-apple-system,BlinkMacSystemFont,‘Segoe UI’,Roboto,sans-serif;outline:none}
+.chat-send{width:32px;height:32px;background:#1E6FE8;border-radius:8px;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;color:white;font-size:14px}
 
-.legend{margin-top:20px;background:var(–white);border-radius:12px;padding:14px 16px;border:1px solid var(–border)}
-.legend-title{font-size:10px;font-weight:600;color:var(–gray);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:10px}
+.legend{margin-top:20px;background:#FFFFFF;border-radius:12px;padding:14px 16px;border:1px solid #E2EAF4}
+.legend-title{font-size:10px;font-weight:600;color:#6B7A8D;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:10px}
 .legend-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
-.legend-item{display:flex;align-items:flex-start;gap:6px;font-size:11px;color:var(–gray);line-height:1.4}
+.legend-item{display:flex;align-items:flex-start;gap:6px;font-size:11px;color:#6B7A8D;line-height:1.4}
 .ldot{width:6px;height:6px;border-radius:50%;flex-shrink:0;margin-top:3px}
 </style>
 
@@ -187,14 +188,14 @@ body{background:#EEF2F7;font-family:var(–sans);min-height:100vh;display:flex;a
   <div class="av av-sm">SM</div>
   <div>
     <div class="msg-name">StreamMind <span class="badge-sm">agent</span> <span class="msg-time">14:32</span></div>
-    <div class="bubble" style="background:var(--offwhite);border-left:2px solid var(--cyan)">
+    <div class="bubble-agent">
       Hi <span class="mention">@Linh</span>, I found the Client X brief in the Knowledge Base. Based on what you shared, here are the changes that need to be updated.<br><br>
       Please confirm below — I'll update the KB and notify Thao for you.
-      <div style="display:flex;align-items:center;gap:8px;background:white;border:1px solid var(--border);border-radius:8px;padding:8px 10px;margin-top:8px">
+      <div style="display:flex;align-items:center;gap:8px;background:#FFFFFF;border:1px solid #E2EAF4;border-radius:8px;padding:8px 10px;margin-top:8px">
         <span style="font-size:18px">📄</span>
         <div>
-          <div style="font-size:12px;font-weight:600;color:var(--text)">Client_X_Brief_v2.docx → needs update</div>
-          <div style="font-size:10px;color:var(--gray2);margin-top:1px">Found in Knowledge Base · Last updated Oct 2024</div>
+          <div style="font-size:12px;font-weight:600;color:#1A2332">Client_X_Brief_v2.docx → needs update</div>
+          <div style="font-size:10px;color:#9AABB8;margin-top:1px">Found in Knowledge Base · Last updated Oct 2024</div>
         </div>
       </div>
     </div>
@@ -249,8 +250,8 @@ body{background:#EEF2F7;font-family:var(–sans);min-height:100vh;display:flex;a
             <div class="detail-label" style="margin-bottom:5px;font-size:9px">What Linh shared</div>
             <div class="detail-quote" style="font-size:10.5px;padding:7px 9px;margin-bottom:7px">"Target audience changed to Gen Z and TikTok budget increased to 45% — confirmed in today's meeting."</div>
             <div class="detail-label" style="margin-bottom:5px;font-size:9px">Detected changes</div>
-            <div style="background:white;border:1px solid var(--border);border-radius:7px;padding:8px 10px;margin-bottom:8px">
-              <div style="font-size:11px;color:var(--text);line-height:1.8">
+            <div style="background:#FFFFFF;border:1px solid #E2EAF4;border-radius:7px;padding:8px 10px;margin-bottom:8px">
+              <div style="font-size:11px;color:#1A2332;line-height:1.8">
                 <div>· Target audience: <strong>25–35 → 18–24 (Gen Z)</strong></div>
                 <div>· TikTok budget: <strong>20% → 45%</strong> of total campaign</div>
                 <div>· Strategy: Facebook + Instagram → <strong>TikTok-first</strong></div>
@@ -258,10 +259,10 @@ body{background:#EEF2F7;font-family:var(–sans);min-height:100vh;display:flex;a
               </div>
             </div>
             <div class="detail-label" style="margin-bottom:5px;font-size:9px">Current KB entry (to be replaced)</div>
-            <a href="#" onclick="return false" style="color:var(--blue);text-decoration:none;display:flex;align-items:center;gap:5px;padding:7px 9px;background:var(--blue-soft);border-radius:6px;border:1px solid rgba(30,111,232,0.2)">
+            <a href="#" onclick="return false" style="color:#1E6FE8;text-decoration:none;display:flex;align-items:center;gap:5px;padding:7px 9px;background:#E8F0FD;border-radius:6px;border:1px solid rgba(30,111,232,0.2)">
               <span style="font-size:13px">📄</span>
               <span style="font-size:11px;font-weight:500">Client_X_Brief_v2.docx</span>
-              <span style="font-size:9px;color:var(--gray2);margin-left:auto">Open to verify →</span>
+              <span style="font-size:9px;color:#9AABB8;margin-left:auto">Open to verify →</span>
             </a>
           </div>
         </div>
@@ -306,12 +307,12 @@ body{background:#EEF2F7;font-family:var(–sans);min-height:100vh;display:flex;a
   <div class="av av-sm">SM</div>
   <div>
     <div class="msg-name">StreamMind <span class="badge-sm">agent</span> <span class="msg-time">14:33</span></div>
-    <div class="bubble" style="background:var(--offwhite);border-left:2px solid var(--cyan)">
+    <div class="bubble-agent">
       <span class="noti-tag">@Thao Le</span> Client X brief has been updated by Linh.<br><br>
       <strong>Changes:</strong> Target 25–35 → 18–24 (Gen Z) · TikTok budget 20% → 45%.<br><br>
-      Confirmed by <strong>Linh Nguyen</strong> · 14:33 · <span style="color:var(--blue);font-size:12px">View diff →</span><br><br>
-      <a href="#" onclick="return false" style="display:inline-flex;align-items:center;gap:5px;color:var(--blue);text-decoration:none;font-size:12px;font-weight:500;background:var(--blue-soft);padding:5px 10px;border-radius:6px;border:1px solid rgba(30,111,232,0.2)">
-        📄 Client_X_Brief_v3.docx <span style="font-size:10px;color:var(--gray2)">· updated version →</span>
+      Confirmed by <strong>Linh Nguyen</strong> · 14:33 · <span style="color:#1E6FE8;font-size:12px">View diff →</span><br><br>
+      <a href="#" onclick="return false" style="display:inline-flex;align-items:center;gap:5px;color:#1E6FE8;text-decoration:none;font-size:12px;font-weight:500;background:#E8F0FD;padding:5px 10px;border-radius:6px;border:1px solid rgba(30,111,232,0.2)">
+        📄 Client_X_Brief_v3.docx <span style="font-size:10px;color:#9AABB8">· updated version →</span>
       </a>
     </div>
   </div>
