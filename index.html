@@ -1,13 +1,12 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="vi">
 <head>
 <meta charset="UTF-8">
-<meta name="format-detection" content="telephone=no,address=no,email=no">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>StreamMind Mockup</title>
 <style>
     *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-    body{background:#EEF2F7;font-family:system-ui;min-height:100vh;display:flex;align-items:center;justify-content:center;padding:20px 12px}
+    body{background:#EEF2F7;font-family:system-ui;min-height:100vh;display:flex;justify-content:center;padding:20px 12px}
     .wrapper{width:100%;max-width:520px;background:#fff;border-radius:20px;overflow:hidden;box-shadow:0 10px 40px rgba(0,0,0,0.15)}
 
     .ui-header{background:#0A1628;padding:14px 18px;display:flex;align-items:center;gap:10px;color:white}
@@ -27,12 +26,11 @@
     .av-sm{background:#0A1628;color:#00C2D4}
     .msg-name{font-size:11.5px;font-weight:600;color:#6B7A8D;margin-bottom:4px}
     .msg-time{font-size:10px;color:#9AABB8}
-    .badge-sm{font-size:9px;background:#0A1628;color:#00C2D4;padding:1px 5px;border-radius:3px;font-family:monospace}
+    .badge-sm{font-size:9px;background:#0A1628;color:#00C2D4;padding:1px 5px;border-radius:3px}
     .txt{font-size:13.5px;color:#1A2332;line-height:1.5;background:#F7F9FC;border-radius:12px 12px 12px 4px;padding:10px 13px;max-width:85%}
     .txt-agent{font-size:13.5px;color:#1A2332;line-height:1.5;background:#F7F9FC;border-radius:12px 12px 12px 4px;padding:10px 13px;max-width:85%;border-left:4px solid #00C2D4}
     .mention{color:#1E6FE8;font-weight:500}
 
-    /* Action Card */
     .action-card{border:2px solid #1E6FE8;border-radius:12px;overflow:hidden;background:#FFFFFF;margin-top:4px}
     .card-hdr{background:#1E6FE8;padding:10px 14px;display:flex;align-items:center;gap:8px;color:white}
     .card-hdr-icon{font-size:18px}
@@ -48,36 +46,32 @@
     .ba-text{font-size:12.5px;line-height:1.5;color:#1F2937}
 
     .context-toggle{color:#1E6FE8;font-size:12.5px;cursor:pointer;display:flex;align-items:center;gap:4px;margin:8px 0}
-    .quote-box{background:#111827;color:white;padding:12px;border-radius:8px;font-size:13px;line-height:1.5;margin:12px 0}
-
-    .detected-changes{background:#F8FAFC;border:1px solid #E2E8F0;border-radius:8px;padding:12px;font-size:12.5px;margin:12px 0}
-    .detected-changes li{margin-bottom:6px}
-
-    .kb-entry{background:#F1F5F9;padding:10px 12px;border-radius:8px;display:flex;align-items:center;gap:10px;margin:12px 0}
-    .kb-entry a{color:#1E6FE8;text-decoration:none;font-size:13px}
-
-    /* Nút nhỏ lại */
+    
     .btns{display:flex;gap:8px;margin-top:12px}
     .btn{
-        flex:1;
-        padding:9px 12px;
-        border-radius:8px;
-        font-size:13px;
-        font-weight:600;
-        cursor:pointer;
-        border:none;
-        height:42px;
-        display:flex;
-        align-items:center;
-        justify-content:center;
-        gap:6px;
+        flex:1; padding:9px 12px; border-radius:8px; font-size:13px; font-weight:600;
+        cursor:pointer; border:none; height:42px; display:flex; align-items:center; justify-content:center; gap:6px;
     }
     .btn-confirm{background:#1E6FE8;color:white}
     .btn-edit{background:white;color:#1F2937;border:1px solid #CBD5E1}
     .btn-skip{background:white;color:#64748B;border:1px solid #CBD5E1}
 
-    .notif-msg, .linh-react {display:none}
-    .notif-msg.on, .linh-react.on {display:flex}
+    .edit-area{display:none; margin-top:12px}
+    .edit-area.on{display:block}
+    .edit-ta{width:100%; padding:10px; border:1.5px solid #1E6FE8; border-radius:8px; min-height:70px; font-size:13px}
+
+    .confirmed{display:none; background:#F0FFF4; border:1px solid #9AE6B4; border-radius:10px; padding:12px; margin-top:12px}
+    .confirmed.on{display:flex; gap:10px; align-items:flex-start}
+    .conf-icon{width:28px;height:28px;background:#38A169;border-radius:50%;color:white;display:flex;align-items:center;justify-content:center;font-size:16px}
+
+    .skipped{display:none; font-size:12px; color:#9AABB8; text-align:center; padding:10px; font-style:italic}
+    .skipped.on{display:block}
+
+    /* Legend */
+    .legend{margin-top:24px;background:#F8FAFC;padding:16px;border-radius:12px;border:1px solid #E2E8F0}
+    .legend-title{font-size:10px;font-weight:600;color:#6B7A8D;letter-spacing:1px;text-transform:uppercase;margin-bottom:12px}
+    .legend-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+    .legend-item{font-size:12px;color:#475569;line-height:1.45}
 </style>
 </head>
 <body>
@@ -90,67 +84,40 @@
 
   <div class="ui-body">
 
-    <!-- STEP 1,2,3 giữ nguyên -->
-    <div class="step-divider">
-      <div class="step-line"></div>
-      <div class="step-label">STEP 1 — Linh knows what to update, not where</div>
-      <div class="step-line"></div>
-    </div>
+    <!-- Các Step 1,2,3,4,5 như trước -->
+    <div class="step-divider"><div class="step-line"></div><div class="step-label">STEP 1 — Linh knows what to update, not where</div><div class="step-line"></div></div>
     <div class="row">
       <div class="av av-linh">LN</div>
-      <div>
-        <div class="msg-name">Linh Nguyen <span class="msg-time">14:31</span></div>
-        <div class="txt">Hey, I just heard in the meeting that the Client X brief has been updated — target audience changed to Gen Z and TikTok budget increased to 45%. I know I need to update this info somewhere but I'm not sure where or which tool to use 😅</div>
-      </div>
+      <div><div class="msg-name">Linh Nguyen <span class="msg-time">14:31</span></div>
+      <div class="txt">Hey, I just heard in the meeting that the Client X brief has been updated — target audience changed to Gen Z and TikTok budget increased to 45%. I know I need to update this info somewhere but I'm not sure where or which tool to use 😅</div></div>
     </div>
 
-    <div class="step-divider">
-      <div class="step-line"></div>
-      <div class="step-label">STEP 2 — Senior tags StreamMind, 1 mention is enough</div>
-      <div class="step-line"></div>
-    </div>
+    <div class="step-divider"><div class="step-line"></div><div class="step-label">STEP 2 — Senior tags StreamMind, 1 mention is enough</div><div class="step-line"></div></div>
     <div class="row">
       <div class="av av-thao">TL</div>
-      <div>
-        <div class="msg-name">Thao Le <span class="msg-time">14:32</span></div>
-        <div class="txt"><span class="mention">@StreamMind</span> please help Linh update the Client X brief — she has the new info from the meeting.</div>
-      </div>
+      <div><div class="msg-name">Thao Le <span class="msg-time">14:32</span></div>
+      <div class="txt"><span class="mention">@StreamMind</span> please help Linh update the Client X brief — she has the new info from the meeting.</div></div>
     </div>
 
-    <div class="step-divider">
-      <div class="step-line"></div>
-      <div class="step-label">STEP 3 — StreamMind finds the right KB entry</div>
-      <div class="step-line"></div>
-    </div>
+    <div class="step-divider"><div class="step-line"></div><div class="step-label">STEP 3 — StreamMind finds the right KB entry</div><div class="step-line"></div></div>
     <div class="row">
       <div class="av av-sm">SM</div>
-      <div>
-        <div class="msg-name">StreamMind <span class="badge-sm">agent</span> <span class="msg-time">14:32</span></div>
-        <div class="txt-agent">
-          Hi <span class="mention">@Linh</span>, I found the Client X brief in the Knowledge Base. Based on what you shared, here are the changes that need to be updated.<br><br>
-          Please confirm below — I'll update the KB and notify Thao for you.
-        </div>
-      </div>
+      <div><div class="msg-name">StreamMind <span class="badge-sm">agent</span> <span class="msg-time">14:32</span></div>
+      <div class="txt-agent">Hi <span class="mention">@Linh</span>, I found the Client X brief in the Knowledge Base. Based on what you shared, here are the changes that need to be updated.<br><br>Please confirm below — I'll update the KB and notify Thao for you.</div></div>
     </div>
 
-    <!-- STEP 4 - Action Card -->
-    <div class="step-divider">
-      <div class="step-line"></div>
-      <div class="step-label">STEP 4 — StreamMind surfaces Action Card inline</div>
-      <div class="step-line"></div>
-    </div>
+    <div class="step-divider"><div class="step-line"></div><div class="step-label">STEP 4 — StreamMind surfaces Action Card inline</div><div class="step-line"></div></div>
     <div class="row">
       <div class="av av-sm">SM</div>
       <div style="flex:1">
         <div class="msg-name">StreamMind <span class="badge-sm">agent</span> <span class="msg-time">14:33</span></div>
-
-        <div class="action-card">
+        
+        <div class="action-card" id="actionCard">
           <div class="card-hdr">
             <span class="card-hdr-icon">🧠</span>
             <div class="card-hdr-label">QualBrain — Action required</div>
           </div>
           <div class="card-body">
-
             <div class="card-title">📄 Update Client X brief in Knowledge Base</div>
 
             <div class="ba-grid">
@@ -168,56 +135,111 @@
               <span id="toggleIcon">▼</span> Show full context
             </div>
 
-            <div id="fullContext" style="display:none">
-              <!-- Nội dung full context nếu cần -->
-            </div>
-
-            <div class="btns">
+            <div class="btns" id="btns">
               <button class="btn btn-confirm" onclick="handleConfirm()">✓ Confirm</button>
               <button class="btn btn-edit" onclick="handleEdit()">✏ Edit</button>
               <button class="btn btn-skip" onclick="handleSkip()">✕ Skip</button>
             </div>
+
+            <div class="edit-area" id="editArea">
+              <textarea class="edit-ta" id="editTa">Target: 18–24 (Gen Z) · TikTok budget: 45% · TikTok-first strategy</textarea>
+              <div style="display:flex;gap:8px;margin-top:8px">
+                <button class="btn btn-confirm" onclick="saveEdit()" style="flex:2">Save & Commit</button>
+                <button class="btn btn-edit" onclick="cancelEdit()">Cancel</button>
+              </div>
+            </div>
+
+            <div class="confirmed" id="confirmed">
+              <div class="conf-icon">✓</div>
+              <div>
+                <div style="font-weight:600;color:#38A169">Client X brief updated in Knowledge Base</div>
+                <div style="font-size:12px;color:#64748B" id="confSub">Confirmed by Linh Nguyen · 14:33</div>
+              </div>
+            </div>
+
+            <div class="skipped" id="skipped">Action skipped — StreamMind will learn from this</div>
           </div>
         </div>
       </div>
     </div>
 
-    <!-- STEP 5 -->
-    <div class="step-divider">
+    <div class="step-divider" id="step5" style="display:none">
       <div class="step-line"></div>
       <div class="step-label">STEP 5 — StreamMind notifies Senior via @tag</div>
       <div class="step-line"></div>
     </div>
-    <div class="row">
+
+    <div class="row" id="notifMsg" style="display:none">
       <div class="av av-sm">SM</div>
-      <div>
-        <div class="msg-name">StreamMind <span class="badge-sm">agent</span> <span class="msg-time">14:34</span></div>
-        <div class="txt-agent">
-          <span class="mention">@Thao Le</span> Client X brief has been updated.<br><br>
-          <strong>Changes:</strong> Target 25–35 → 18–24 (Gen Z) · TikTok budget 20% → 45%.
-        </div>
-      </div>
+      <div><div class="msg-name">StreamMind <span class="badge-sm">agent</span> <span class="msg-time">14:34</span></div>
+      <div class="txt-agent"><span class="mention">@Thao Le</span> Client X brief has been updated.<br><br><strong>Changes:</strong> Target 25–35 → 18–24 (Gen Z) · TikTok budget 20% → 45%.</div></div>
     </div>
 
+    <div class="row" id="linhReact" style="display:none">
+      <div class="av av-linh">LN</div>
+      <div><div class="msg-name">Linh Nguyen <span class="msg-time">14:35</span></div>
+      <div class="txt">Thanks <span class="mention">@StreamMind</span>! All done — didn't need to bother Thao at all 🙏</div></div>
+    </div>
+
+  </div>
+
+  <!-- Legend Section -->
+  <div class="legend">
+    <div class="legend-title">STREAMMIND — DESIGN DECISIONS</div>
+    <div class="legend-grid">
+      <div class="legend-item">• Linh knows what to update — not where. StreamMind bridges the gap.</div>
+      <div class="legend-item">• Senior delegates with 1 @mention — no manual lookup, no context switch</div>
+      <div class="legend-item">• StreamMind finds KB entry automatically from synced documents</div>
+      <div class="legend-item">• Linh confirms — KB updated without interrupting senior again</div>
+      <div class="legend-item">• Senior gets @tag notification — aware, not interrupted</div>
+      <div class="legend-item">• 1 agent · multi-human · one goal · fully traceable</div>
+    </div>
   </div>
 </div>
 
 <script>
 function toggleContext() {
-  const ctx = document.getElementById('fullContext');
   const icon = document.getElementById('toggleIcon');
-  if (ctx.style.display === 'none') {
-    ctx.style.display = 'block';
-    icon.textContent = '▲';
-  } else {
-    ctx.style.display = 'none';
-    icon.textContent = '▼';
-  }
+  icon.textContent = icon.textContent === '▼' ? '▲' : '▼';
 }
 
-function handleConfirm() { alert("✅ Updated successfully!"); }
-function handleEdit() { alert("✏ Edit mode"); }
-function handleSkip() { alert("Skipped"); }
+function handleConfirm() {
+  document.getElementById('btns').style.display = 'none';
+  document.getElementById('confirmed').classList.add('on');
+  document.getElementById('actionCard').style.borderColor = '#38A169';
+  setTimeout(() => {
+    document.getElementById('step5').style.display = 'flex';
+    document.getElementById('notifMsg').style.display = 'flex';
+    document.getElementById('linhReact').style.display = 'flex';
+  }, 700);
+}
+
+function handleEdit() {
+  document.getElementById('btns').style.display = 'none';
+  document.getElementById('editArea').classList.add('on');
+}
+
+function saveEdit() {
+  document.getElementById('editArea').classList.remove('on');
+  document.getElementById('confirmed').classList.add('on');
+  document.getElementById('actionCard').style.borderColor = '#38A169';
+  setTimeout(() => {
+    document.getElementById('step5').style.display = 'flex';
+    document.getElementById('notifMsg').style.display = 'flex';
+    document.getElementById('linhReact').style.display = 'flex';
+  }, 700);
+}
+
+function cancelEdit() {
+  document.getElementById('editArea').classList.remove('on');
+  document.getElementById('btns').style.display = 'flex';
+}
+
+function handleSkip() {
+  document.getElementById('btns').style.display = 'none';
+  document.getElementById('skipped').classList.add('on');
+  document.getElementById('actionCard').style.opacity = '0.6';
+}
 </script>
 
 </body>
